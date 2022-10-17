@@ -1,4 +1,0 @@
-C:/Users/jpbor/CLionProjects/project_wc_prog3/cmake-build-debug/CMakeFiles/wce.dir
-C:/Users/jpbor/CLionProjects/project_wc_prog3/cmake-build-debug/CMakeFiles/Test.dir
-C:/Users/jpbor/CLionProjects/project_wc_prog3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/jpbor/CLionProjects/project_wc_prog3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
