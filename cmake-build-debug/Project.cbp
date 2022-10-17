@@ -128,6 +128,12 @@
 		<Unit filename="C:/Users/jpbor/CLionProjects/project_wc_prog3/test.cpp">
 			<Option target="Test"/>
 		</Unit>
+		<Unit filename="C:/Users/jpbor/CLionProjects/project_wc_prog3/word_counter/WordCounter.cpp">
+			<Option target="Test"/>
+		</Unit>
+		<Unit filename="C:/Users/jpbor/CLionProjects/project_wc_prog3/word_counter/WordCounter.h">
+			<Option target="Test"/>
+		</Unit>
 		<Unit filename="C:/Users/jpbor/CLionProjects/project_wc_prog3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

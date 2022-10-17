@@ -189,6 +189,30 @@ test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test.dir\build.make CMakeFiles/Test.dir/test.cpp.s
 .PHONY : test.cpp.s
 
+word_counter/WordCounter.obj: word_counter/WordCounter.cpp.obj
+.PHONY : word_counter/WordCounter.obj
+
+# target to build an object file
+word_counter/WordCounter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test.dir\build.make CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj
+.PHONY : word_counter/WordCounter.cpp.obj
+
+word_counter/WordCounter.i: word_counter/WordCounter.cpp.i
+.PHONY : word_counter/WordCounter.i
+
+# target to preprocess a source file
+word_counter/WordCounter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test.dir\build.make CMakeFiles/Test.dir/word_counter/WordCounter.cpp.i
+.PHONY : word_counter/WordCounter.cpp.i
+
+word_counter/WordCounter.s: word_counter/WordCounter.cpp.s
+.PHONY : word_counter/WordCounter.s
+
+# target to generate assembly for a file
+word_counter/WordCounter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test.dir\build.make CMakeFiles/Test.dir/word_counter/WordCounter.cpp.s
+.PHONY : word_counter/WordCounter.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -205,6 +229,9 @@ help:
 	@echo ... test.obj
 	@echo ... test.i
 	@echo ... test.s
+	@echo ... word_counter/WordCounter.obj
+	@echo ... word_counter/WordCounter.i
+	@echo ... word_counter/WordCounter.s
 .PHONY : help
 
 

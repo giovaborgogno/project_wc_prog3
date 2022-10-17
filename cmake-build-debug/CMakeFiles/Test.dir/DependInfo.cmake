@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/jpbor/CLionProjects/project_wc_prog3/test.cpp" "CMakeFiles/Test.dir/test.cpp.obj" "gcc" "CMakeFiles/Test.dir/test.cpp.obj.d"
+  "C:/Users/jpbor/CLionProjects/project_wc_prog3/word_counter/WordCounter.cpp" "CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj" "gcc" "CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj.d"
   )
 
 # Targets to which this target links.
