@@ -1,5 +1,5 @@
 //
-// Created by giovaborgogno on 17/10/2022.
+// Created by giovaborgogno on 17/10/2022.nn
 //
 #include "data_structs/ArbolAlpha.h"
 #include <iostream>
