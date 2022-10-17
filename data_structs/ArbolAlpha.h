@@ -115,6 +115,8 @@ void ArbolAlpha<T>::inorder(NodoArbol<T> *r) {
     inorder(r->getLeft());
     cout << r->getData() << " ";
     inorder(r->getRight());
+
+
 }
 
 

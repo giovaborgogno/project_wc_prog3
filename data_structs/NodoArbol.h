@@ -11,7 +11,7 @@ using namespace std;
 template <class T> class NodoArbol {
 private:
     T data;
-    T ocurrencia;
+    int ocurrencia;
     NodoArbol *left, *right;
 
 public:
