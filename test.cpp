@@ -3,20 +3,19 @@
 //
 #include "data_structs/ArbolAlpha.h"
 #include <iostream>
+#include "word_counter/WordCounter.h"
 
 using namespace std;
 
-int main(){
+int main() {
+    string ARCHIVO = "../db_texto/textoprueba.txt";
+    WordCounter wce(ARCHIVO);
+    wce.basicas();
+    cout << "\n";
+    wce.palabras(3);
+    cout << "\n";
+    wce.ocurrencias(3);
 
-    ArbolAlpha<string> a;
-    a.put("borgogno");
-    a.put("alvarez");
-    a.put("perez");
-    a.put("marcelo");
-    a.put("juan");
-    a.put("felipe");
-    a.put("abuelo");
 
-    a.inorder();
     return 0;
 }

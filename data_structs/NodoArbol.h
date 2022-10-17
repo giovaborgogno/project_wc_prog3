@@ -26,10 +26,16 @@ public:
         left = nullptr;
         right = nullptr;
     }
+    NodoArbol(T d, int o) {
+        this->data = d;
+        this->ocurrencia = o;
+        left = nullptr;
+        right = nullptr;
+    }
 
     T getData() const { return data;}
 
-    T getOcurrencia() const { return ocurrencia;}
+    int getOcurrencia() const { return ocurrencia;}
 
     void setData(T d) { this->data = d;}
 
