@@ -143,8 +143,10 @@ CMakeFiles/Test.dir/test.cpp.obj: ../test.cpp \
   ../data_structs/ArbolOccurrence.h \
   ../word_counter/WordCounter.h \
   ../data_structs/ArbolAlpha.h \
-  ../data_structs/ArbolOccurrence.h \
-  ../data_structs/HashMap.h
+  ../data_structs/Cola.h \
+  ../data_structs/Nodo.h \
+  ../data_structs/HashMap.h \
+  C:/msys64/mingw64/include/c++/12.2.0/ctime
 
 CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj: ../word_counter/WordCounter.cpp \
   ../word_counter/WordCounter.h \
@@ -287,13 +289,16 @@ CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj: ../word_counter/WordCounte
   C:/msys64/mingw64/include/c++/12.2.0/istream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
   ../data_structs/ArbolOccurrence.h \
-  ../data_structs/ArbolOccurrence.h \
+  ../data_structs/Cola.h \
+  ../data_structs/Nodo.h \
   ../data_structs/HashMap.h \
   C:/msys64/mingw64/include/c++/12.2.0/fstream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h \
   C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/c++io.h \
-  C:/msys64/mingw64/include/c++/12.2.0/bits/fstream.tcc
+  C:/msys64/mingw64/include/c++/12.2.0/bits/fstream.tcc \
+  C:/msys64/mingw64/include/c++/12.2.0/sstream \
+  C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc
 
 
 ../test.cpp:
@@ -404,6 +409,8 @@ C:/msys64/mingw64/include/c++/12.2.0/typeinfo:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/hash_bytes.h:
 
+C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc:
+
 C:/msys64/mingw64/include/c++/12.2.0/bits/locale_facets.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/cxxabi_forced.h:
@@ -463,6 +470,8 @@ C:/msys64/mingw64/include/pthread_compat.h:
 C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
 C:/msys64/mingw64/include/pthread_unistd.h:
+
+../data_structs/Cola.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/atomic_word.h:
 
@@ -582,7 +591,13 @@ C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc:
 
 ../word_counter/WordCounter.h:
 
+../data_structs/Nodo.h:
+
+C:/msys64/mingw64/include/c++/12.2.0/ctime:
+
 ../word_counter/WordCounter.cpp:
+
+C:/msys64/mingw64/include/c++/12.2.0/sstream:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h:
 

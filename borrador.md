@@ -14,5 +14,5 @@ extras:
 palabras[n]: cargar en un arbol, metodo inOrderAlph(nPalabras) y metodo inOrderAlph();
 ocurrencias[n]: almacenar datos en array y ordenar con quickSort // cargar los datos a un arbol binario, por ocurrencia (si se repite la ocurrencia, lo carga por orden alpha, metodo inverso a inOrder();
 mostrar[palabra],[palabra]: tabla hash, busqueda de palabra -> cargar en un array -> ordenar por ocurrencia
-excluir [palabra],[palabra] :
-excluirf [archivo.txt] :
+excluir [palabra],[palabra] : loadDataInTree()->remove(palabras que deben ignorarse) -- return tree;
+excluirf [archivo.txt] : idem anterior;

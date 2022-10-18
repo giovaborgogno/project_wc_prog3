@@ -135,5 +135,7 @@ CMakeFiles/Test.dir/test.cpp.obj: \
  C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/ArbolOccurrence.h \
  C:\Users\jpbor\CLionProjects\project_wc_prog3\word_counter/WordCounter.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolOccurrence.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMap.h
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Cola.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Nodo.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMap.h \
+ C:/msys64/mingw64/include/c++/12.2.0/ctime

@@ -6,7 +6,7 @@
 #define PROJECT_WC_PROG3_WORDCOUNTER_H
 
 #include "../data_structs/ArbolAlpha.h"
-#include "../data_structs/ArbolOccurrence.h"
+#include "../data_structs/Cola.h"
 #include "../data_structs/HashMap.h"
 
 /*
@@ -16,9 +16,6 @@ class WordCounter {
 private:
     string ARCHIVO;
     int countPalabras, countPalabrasDif, countLineas, countLetras;
-
-    ArbolAlpha<string> llenarArbol();
-
 public:
     WordCounter(string ARCHIVO){
         this->ARCHIVO = ARCHIVO;
@@ -26,22 +23,15 @@ public:
         countPalabrasDif = 0;
         countLineas = 0;
         countLetras = 0;
-
     }
-    WordCounter() {};
 
+    ArbolAlpha<string> *loadDataInTree();
     void basicas();
-
-    void palabras(int nPalabras = 0);
-
-    void ocurrencias(int nPalabras = 0);
-
+    void palabras(ArbolAlpha<string> *arbol ,int nPalabras = 0);
+    void ocurrencias(ArbolAlpha<string> *arbol, int nPalabras = 0);
     void mostrar(string palabras);
-
-    void excluir(string palabras);
-
-    void excluirf(string ARCHIVO);
-
+    ArbolAlpha<string> *excluir(string palabras);
+    ArbolAlpha<string> *excluirf(string ARCHIVO_EXCLUIR);
 };
 
 #endif //PROJECT_WC_PROG3_WORDCOUNTER_H
