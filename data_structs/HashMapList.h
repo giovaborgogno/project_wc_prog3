@@ -15,7 +15,7 @@ private:
     unsigned int (*hashFuncP)(K key);
 
 public:
-    Lista<HashEntry<K>> **table;
+    Lista<HashEntry<K>*> **table;
     int posiciones = 0;
     unsigned int size;
 
@@ -46,7 +46,7 @@ public:
 template<class K>
 HashMapList<K>::HashMapList(unsigned int size) {
     this->size = size;
-    table = new Lista<HashEntry<K>> *[size];
+    table = new Lista<HashEntry<K>*> *[size];
     for (int i = 0; i < size; i++) {
         table[i] = NULL;
 //        table[i] = new Lista<HashEntry<K>>;
@@ -57,7 +57,7 @@ HashMapList<K>::HashMapList(unsigned int size) {
 template<class K>
 HashMapList<K>::HashMapList(unsigned int k, unsigned int (*fp)(K)) {
     size = k;
-    table = new Lista<HashEntry<K>> *[size];
+    table = new Lista<HashEntry<K>*> *[size];
     for (int i = 0; i < size; i++) {
         table[i] = NULL;
 //        table[i] = new Lista<HashEntry<K, T>>;
@@ -79,17 +79,18 @@ void HashMapList<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
 
     if (table[pos] == NULL) {
-        table[pos] = new Lista<HashEntry<K>>;
+        table[pos] = new Lista<HashEntry<K>*>;
         posiciones++;
     }
     for (int i = 0; i < table[pos]->getTamanio(); ++i) {
 
-        if (table[pos]->getDato(i).getKey() == key) {
+        if (table[pos]->getDato(i)->getKey() == key) {
             throw 404;
         }
     }
-    HashEntry<K> hash(key, valor);
-    table[pos]->insertarUltimo(hash);
+//    HashEntry<K> hash(key, valor);
+//    table[pos]->insertarUltimo(hash);
+    table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
     //cout << "\npos: " << pos << " tamanio: " << table[pos]->getTamanio() << "\n";
 }
 
@@ -98,20 +99,21 @@ void HashMapList<K>::putOcurrence(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
 
     if (table[pos] == NULL) {
-        table[pos] = new Lista<HashEntry<K>>;
+        table[pos] = new Lista<HashEntry<K>*>;
         posiciones++;
     }
     for (int i = 0; i < table[pos]->getTamanio(); ++i) {
 
-        if (table[pos]->getDato(i).getKey() == key) {
-            HashEntry<string> hashEntry = table[pos]->getDato(i);
-            hashEntry.incrementValue();
-            table[pos]->reemplazar(i, hashEntry);
+        if (table[pos]->getDato(i)->getKey() == key) {
+            table[pos]->getDato(i)->incrementValue();
+//            HashEntry<string> hashEntry = table[pos]->getDato(i);
+//            hashEntry.incrementValue();
+//            table[pos]->reemplazar(i, hashEntry);
             throw 404;
         }
     }
-    HashEntry<K> hash(key, valor);
-    table[pos]->insertarUltimo(hash);
+//    HashEntry<K> hash(key, valor);
+    table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
     //cout << "\npos: " << pos << " tamanio: " << table[pos]->getTamanio() << "\n";
 }
 
@@ -166,10 +168,10 @@ void HashMapList<K>::get(K key) { // Método que devuelve la lista según la key
         throw 404;
     }
 
-    Nodo<HashEntry<K>> *aux = table[pos]->getinicio();
+    Nodo<HashEntry<K>*> *aux = table[pos]->getinicio();
 
     while (aux != NULL) {
-        cout << aux->getDato().getKey() << " " << aux->getDato().getValue() << endl;
+        cout << aux->getDato()->getKey() << " " << aux->getDato()->getValue() << endl;
         aux = aux->getSiguiente();
     }
 }
@@ -187,8 +189,8 @@ void HashMapList<K>::print() {
         std::cout << i << " ";
         if (table[i] != NULL) {
             try {
-                std::cout << table[i]->getDato(0).getKey() << "\t\t";
-                std::cout << table[i]->getDato(0).getValue();
+                std::cout << table[i]->getDato(0)->getKey() << "\t\t";
+                std::cout << table[i]->getDato(0)->getValue();
             }
             catch (int err) {
 

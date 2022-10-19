@@ -72,12 +72,12 @@ void WordCounter::ocurrencias(HashMapList<string> *hash, int nPalabras) {
         try {
 
             if(!hash->table[i])throw 404;
-            Nodo<HashEntry<string>> *temp = hash->table[i]->getinicio();
+            Nodo<HashEntry<string>*> *temp = hash->table[i]->getinicio();
             if (hash->table[i]->esVacia())throw 404;
             else {
                 while (temp != nullptr) {
                     {
-                        arbol->put(temp->getDato().getKey(), temp->getDato().getValue());
+                        arbol->put(temp->getDato()->getKey(), temp->getDato()->getValue());
                         if (temp->getSiguiente() == nullptr) break;
                         temp = temp->getSiguiente();
 
