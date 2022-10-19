@@ -12,22 +12,17 @@ template<class T>
 class ArbolAlpha {
 private:
     T search(T data, NodoArbol<T> *r);
-
     NodoArbol<T> *put(T data, NodoArbol<T> *r);
-
     void inorder(NodoArbol<T> *r);
-
     void inorder(int nPalabras, NodoArbol<T> *r, int &count);
-
     void setArbolOccurrence(NodoArbol<T> *r);
-
-
-
+    T inOrderSuccessor(NodoArbol<T> *r);
+    NodoArbol<T> *remove(T data, NodoArbol<T> *r);
 protected:
     NodoArbol<T> *root;
-    ArbolOccurrence<T> ArbolOcurrence;
 
 public:
+    ArbolOccurrence<T> *ArbolOcurrence = new ArbolOccurrence<T>();
     ArbolAlpha();
     void put(T dato);
     T search(T dato);
@@ -37,7 +32,7 @@ public:
     ~ArbolAlpha();
     bool esVacio();
     void print();
-
+    void remove(T dato);
 };
 
 /**
@@ -142,9 +137,9 @@ void ArbolAlpha<T>::setArbolOccurrence(NodoArbol<T> *r) {
     setArbolOccurrence(r->getLeft());
     try {
         
-    ArbolOcurrence.put(r->getData(),r->getOcurrencia());
+    ArbolOcurrence->put(r->getData(),r->getOcurrencia());
     } catch (int err) {
-        
+        cerr << "Error...\n";
     }
     setArbolOccurrence(r->getRight());
 }
@@ -162,11 +157,37 @@ void ArbolAlpha<T>::print() {
 template<class T>
 void ArbolAlpha<T>::inorderOccurrence(int nPalabras) {
     if (nPalabras == 0) {
-        inorder(ArbolOcurrence.root);
+        inorder(ArbolOcurrence->root);
         return;
     }
     int a = 0;
-    inorder(nPalabras, ArbolOcurrence.root, a);
+    inorder(nPalabras, ArbolOcurrence->root, a);
+}
+
+template<class T>
+void ArbolAlpha<T>::remove(T dato) { root = remove(dato, root); }
+template<class T> NodoArbol<T> *ArbolAlpha<T>::remove(T data, NodoArbol<T> *r) {
+    if (r == nullptr)throw 404;
+    if (data < r->getData()) r->setLeft(remove(data, r->getLeft()));
+    else if (data > r->getData())r->setRight(remove(data, r->getRight()));
+    else {
+        if (r->getLeft() == nullptr) return r->getRight();
+        else if (r->getRight() == nullptr) return r->getLeft();
+
+        r->setData(inOrderSuccessor(r->getRight()));
+        r->setRight(remove(r->getData(), r->getRight()));
+    }
+    return r;
+}
+
+template<class T>
+T ArbolAlpha<T>::inOrderSuccessor(NodoArbol<T> *r) {
+    T minimum = r->getData();
+    while (r->getLeft() != nullptr) {
+        minimum = r->getLeft()->getData();
+        r = r->getLeft();
+    }
+    return minimum;
 }
 
 #endif //PROJECT_WC_PROG3_ARBOLALPHA_H

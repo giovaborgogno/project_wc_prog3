@@ -7,7 +7,8 @@
 
 #include "../data_structs/ArbolAlpha.h"
 #include "../data_structs/ArbolOccurrence.h"
-#include "../data_structs/HashMap.h"
+#include "../data_structs/Cola.h"
+#include "../data_structs/HashMapList.h"
 
 /*
  *
@@ -16,9 +17,6 @@ class WordCounter {
 private:
     string ARCHIVO;
     int countPalabras, countPalabrasDif, countLineas, countLetras;
-
-    ArbolAlpha<string> llenarArbol();
-
 public:
     WordCounter(string ARCHIVO){
         this->ARCHIVO = ARCHIVO;
@@ -26,21 +24,17 @@ public:
         countPalabrasDif = 0;
         countLineas = 0;
         countLetras = 0;
-
     }
-    WordCounter() {};
 
+    HashMapList<string> *load();
+    HashMapList<string> *loadInHash();
+    ArbolAlpha<string> *loadDataInTree();
     void basicas();
-
-    void palabras(int nPalabras = 0);
-
-    void ocurrencias(int nPalabras = 0);
-
+    void palabras(ArbolAlpha<string> *arbol ,int nPalabras = 0);
+    void ocurrencias(HashMapList<string> *hash, int nPalabras = 0);
     void mostrar(string palabras);
-
-    void excluir(string palabras);
-
-    void excluirf(string ARCHIVO);
+    ArbolAlpha<string> *excluir(string palabras);
+    ArbolAlpha<string> *excluirf(string ARCHIVO_EXCLUIR);
 
 };
 
