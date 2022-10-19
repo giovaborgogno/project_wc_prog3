@@ -49,7 +49,7 @@ template <class T> void Cola<T>::encolar(T dato) {
         ultimo = nuevo;
         return;
     }
-        nuevo->setsiguiente(ultimo);
+        nuevo->setSiguiente(ultimo);
         ultimo = nuevo;
 }
 
@@ -64,17 +64,17 @@ template <class T> T Cola<T>::desencolar() {
 
     if(esVacia()) throw 404;
     if(primero == ultimo){
-        dato = primero->getdato();
+        dato = primero->getDato();
         auxNodo = primero;
         delete auxNodo;
         primero = nullptr;
         ultimo = nullptr;
         return dato;
     }
-    while(auxNodo->getsiguiente() != primero){
-        auxNodo = auxNodo->getsiguiente();
+    while(auxNodo->getSiguiente() != primero){
+        auxNodo = auxNodo->getSiguiente();
     }
-    dato = primero->getdato();
+    dato = primero->getDato();
     delete primero;
     primero = auxNodo;
     return dato;

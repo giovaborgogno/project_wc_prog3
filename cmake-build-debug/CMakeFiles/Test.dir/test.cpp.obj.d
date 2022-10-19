@@ -133,9 +133,16 @@ CMakeFiles/Test.dir/test.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.2.0/istream \
  C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
  C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/ArbolOccurrence.h \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/HashMapList.h \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/HashEntry.h \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/Lista.h \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/Nodo.h \
  C:\Users\jpbor\CLionProjects\project_wc_prog3\word_counter/WordCounter.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolOccurrence.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Cola.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Nodo.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMap.h \
- C:/msys64/mingw64/include/c++/12.2.0/ctime
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapList.h \
+ C:/msys64/mingw64/include/c++/12.2.0/ctime \
+ C:/msys64/mingw64/include/c++/12.2.0/sstream \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc

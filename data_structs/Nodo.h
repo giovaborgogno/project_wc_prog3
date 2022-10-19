@@ -1,35 +1,39 @@
 //
-// Created by giovaborgogno on 07/09/2022.
+// Created by giovaborgogno on 18/10/2022.
 //
 
-#ifndef INC_2021A2_U04_COLAS_GIOVABORGOGNO_NODO_H
-#define INC_2021A2_U04_COLAS_GIOVABORGOGNO_NODO_H
-
+#ifndef PROJECT_WC_PROG3_NODO_H
+#define PROJECT_WC_PROG3_NODO_H
 #include <iostream>
 
 using namespace std;
 
-template<class T> class Nodo{
+template<class T>class Nodo{
 private:
     T dato;
+    Nodo<T> *siguiente;
 
 public:
-    Nodo<T> *siguiente;
+
+    Nodo(){};
+
     Nodo(T dato){
         this->dato = dato;
-    };
-    ~Nodo(){}
-    void setdato(T dato){
+    }
+    ~Nodo(){
+
+    }
+    void setDato(T dato){
         this->dato = dato;
     };
-    T getdato(){
+    T getDato(){
         return dato;
     };
-    void setsiguiente(Nodo<T> *siguiente){
+    void setSiguiente(Nodo<T> *siguiente){
         this->siguiente = siguiente;
     };
-    Nodo<T>* getsiguiente(){
+    Nodo<T>* getSiguiente(){
         return siguiente;
     };
 };
-#endif //INC_2021A2_U04_COLAS_GIOVABORGOGNO_NODO_H
+#endif //PROJECT_WC_PROG3_NODO_H
