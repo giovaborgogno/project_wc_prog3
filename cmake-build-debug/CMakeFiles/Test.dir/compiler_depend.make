@@ -140,17 +140,20 @@ CMakeFiles/Test.dir/test.cpp.obj: ../test.cpp \
   C:/msys64/mingw64/include/c++/12.2.0/bits/ostream.tcc \
   C:/msys64/mingw64/include/c++/12.2.0/istream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
-  ../data_structs/ArbolOccurrence.h \
-  ../data_structs/HashMapList.h \
   ../data_structs/HashEntry.h \
+  ../data_structs/HashMapList.h \
   ../data_structs/Lista.h \
   ../data_structs/Nodo.h \
   ../word_counter/WordCounter.h \
   ../data_structs/ArbolAlpha.h \
-  ../data_structs/ArbolOccurrence.h \
   ../data_structs/Cola.h \
   ../data_structs/Nodo.h \
+  ../data_structs/ColaPrioridad.h \
+  ../data_structs/NodoPrioridad.h \
   ../data_structs/HashMapList.h \
+  ../data_structs/HashMapTree.h \
+  ../data_structs/HashEntry.h \
+  ../data_structs/ArbolAlpha.h \
   C:/msys64/mingw64/include/c++/12.2.0/ctime \
   C:/msys64/mingw64/include/c++/12.2.0/sstream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc
@@ -295,13 +298,15 @@ CMakeFiles/Test.dir/word_counter/WordCounter.cpp.obj: ../word_counter/WordCounte
   C:/msys64/mingw64/include/c++/12.2.0/bits/ostream.tcc \
   C:/msys64/mingw64/include/c++/12.2.0/istream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
-  ../data_structs/ArbolOccurrence.h \
-  ../data_structs/ArbolOccurrence.h \
+  ../data_structs/HashEntry.h \
   ../data_structs/Cola.h \
   ../data_structs/Nodo.h \
+  ../data_structs/ColaPrioridad.h \
+  ../data_structs/NodoPrioridad.h \
   ../data_structs/HashMapList.h \
-  ../data_structs/HashEntry.h \
   ../data_structs/Lista.h \
+  ../data_structs/HashMapTree.h \
+  ../data_structs/ArbolAlpha.h \
   C:/msys64/mingw64/include/c++/12.2.0/fstream \
   C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h \
   C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/basic_file.h \
@@ -595,17 +600,21 @@ C:/msys64/mingw64/include/c++/12.2.0/istream:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc:
 
-../data_structs/ArbolOccurrence.h:
+../data_structs/HashEntry.h:
 
 ../data_structs/HashMapList.h:
-
-../data_structs/HashEntry.h:
 
 ../data_structs/Lista.h:
 
 ../data_structs/Nodo.h:
 
 ../word_counter/WordCounter.h:
+
+../data_structs/ColaPrioridad.h:
+
+../data_structs/NodoPrioridad.h:
+
+../data_structs/HashMapTree.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/ctime:
 

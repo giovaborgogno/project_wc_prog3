@@ -11,48 +11,69 @@
 using namespace std;
 
 int main() {
-
-//    Lista<HashEntry<string>*> lista;
-//    lista.insertarUltimo(new HashEntry<string>("juan", 1));
-//    lista.getDato(0)->incrementValue();
-//    cout << lista.getDato(0)->getValue();
-/*
-    HashMapList<string> hash(10);
-    try{ hash.putOcurrence("juan", 1); }
-    catch (int cerr) {}
-    try{ hash.putOcurrence("juan", 1); }
-    catch (int cerr) {}
-    try{ hash.putOcurrence("juan", 1); }
-    catch (int cerr) {}
-
-    try {
-        hash.print();
-    }
-    catch (int err) {
-        
-    }*/
-
-
+    std::ios::sync_with_stdio(false);
+    string palabra = "De, y, ave";
+//    string palabra = "¡Qué dulce me parece la muerte, a pesar de todos sus terrores, ahora que se ha acabado toda esperanza engañosa de la vida! ¡Señor! ¡Tú que envías a quienes anuncian buenas eres el mar de la generosidad; tú que guías a los portadores de consuelo! ¡A ti imploro, abiertas todas las heridas de un alma atormentada! ¡Líbrame de mis sufrimientos y de los peligros! ¡Perdona mi torpeza! ¡Olvida mis errores y mis faltas! Cuando Alí-Nur terminó su lamentación, se le acercó Kutait, le explicó lo que pasaba y le ayudó a quitarse la ropa limpia que le había dado ocultamente y le vistió de harapos, llevándole en seguida a la presencia del visir, que lo aguardaba pateando de rabia. Y apenas le vió Alí-Nur, acabó de convencerse del odio que le tenía aquel enemigo de su padre. Pero le dijo: \"Heme aquí ¡oh visir! ¿Crees que te será siempre favorable el destino para fiar en él de ese modo? ¿Ignoras las palabras del poeta?: ¡Al tener que sentenciar lo aprovechan para extralimitarse";
+    string ARCHIVO = "../db_texto/nuevo.txt";
+    string ARCHIVO_EXCLUIR = "../db_texto/excluir.txt";
+    WordCounter wce(ARCHIVO);
 
     unsigned t0, t1;
+    double time = (double(t1 - t0) / CLOCKS_PER_SEC);
 
     t0 = clock();
-    string ARCHIVO = "../db_texto/mucho_texto.txt";
-    //string ARCHIVO_EXCLUIR = "../db_texto/excluir.txt";
-    WordCounter wce(ARCHIVO);
+    cout << "Uso normal:\n";
     wce.basicas();
-//    cout << "\n";
-//    wce.palabras(wce.excluirf(ARCHIVO_EXCLUIR), 3);
-//    cout << "\n";
-//    wce.palabras(wce.excluir("que de"), 3);
-//    cout << "\n";
-//    wce.ocurrencias(wce.loadInHash(),3);
-//    cout << "\n";
-//    wce.mostrar("que de");
     t1 = clock();
-    double time = (double(t1 - t0) / CLOCKS_PER_SEC);
-    cout << "Execution Time: " << time << endl;
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
 
+    t0 = clock();
+    cout << "\n-palabras:\n";
+    wce.palabras(wce.loadHashTree());
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
+
+    t0 = clock();
+    cout << "\n-palabras excluir \"abajo ababil\" 10:\n";
+    wce.palabras(wce.palabrasExcluir("abajo ababil"),10);
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
+
+    t0 = clock();
+    cout << "\n-palabras excluir file.txt 10:\n";
+    wce.palabras(wce.palabrasExcluirf(ARCHIVO_EXCLUIR),10);
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
+
+//    t0 = clock();
+//    cout << "\nOcurrencias:\n";
+//    wce.ocurrencias(wce.loadInHash());
+//    t1 = clock();
+//    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+//    cout << "Execution Time: " << time << "\n";
+
+    t0 = clock();
+    cout << "\n-mostrar \"De, y, ave\":\n";
+    wce.mostrar(palabra);
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
+
+    t0 = clock();
+    /* agregar codigo*/
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
+
+    t0 = clock();
+    /* agregar codigo*/
+    t1 = clock();
+    time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << "\n";
 
     return 0;
 }

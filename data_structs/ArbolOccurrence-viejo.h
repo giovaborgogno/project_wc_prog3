@@ -2,8 +2,8 @@
 // Created by giovaborgogno on 17/10/2022.
 //
 
-#ifndef PROJECT_WC_PROG3_ARBOLOCCURRENCE_H
-#define PROJECT_WC_PROG3_ARBOLOCCURRENCE_H
+#ifndef PROJECT_WC_PROG3_ARBOLOCCURRENCE_VIEJO_H
+#define PROJECT_WC_PROG3_ARBOLOCCURRENCE_VIEJO_H
 
 #include "NodoArbol.h"
 
@@ -110,4 +110,4 @@ void ArbolOccurrence<T>::inorder(int nPalabras, NodoArbol<T> *r, int &count) {
 }
 
 
-#endif //PROJECT_WC_PROG3_ARBOLOCCURRENCE_H
+#endif //PROJECT_WC_PROG3_ARBOLOCCURRENCE_VIEJO_H
