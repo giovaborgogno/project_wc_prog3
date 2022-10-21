@@ -11,10 +11,12 @@ string WordCounter::soloPalabra(string palabra) {
     string nuevaPalabra;
     for (int i = 0; i < palabra.length(); ++i) {
         if (!ispunct(palabra[i]) && !isdigit(palabra[i])) nuevaPalabra += tolower(palabra[i]);
+        // if (!ispunct(palabra[i]) && !isdigit(palabra[i])) nuevaPalabra += palabra[i];
     }
     if (nuevaPalabra.length() == 0)throw 11;
     return nuevaPalabra;
 }
+
 // load() se usa en wce.basicas();
 HashMapList<string> *WordCounter::load() {
     ifstream fich(ARCHIVO);
@@ -45,6 +47,7 @@ HashMapList<string> *WordCounter::load() {
 
     return hash;
 }
+
 // loadInHash() se usa en mostrar();
 HashMapList<string> *WordCounter::loadHashList() {
     ifstream fich(ARCHIVO);
@@ -65,6 +68,28 @@ HashMapList<string> *WordCounter::loadHashList() {
 
     return hash;
 }
+
+// loadInHash() se usa en ocurrencias();
+HashMapList<string> *WordCounter::loadInHash() {
+    ifstream fich(ARCHIVO);
+    if (!fich.is_open()) {
+        cout << "Error al abrir el archivo";
+        exit(EXIT_FAILURE);
+    }
+    int tamanio = 584999;
+    HashMapList<string> *hash = new HashMapList<string>(tamanio);
+    string palabra;
+    while (fich >> palabra) {
+        try {
+            hash->putOcurrence(soloPalabra(palabra), 1);
+        }
+        catch (int err) {
+        };
+    }
+
+    return hash;
+}
+
 //loadHashTree() se usa en palabras();
 HashMapTree<string> *WordCounter::loadHashTree() {
     ifstream fich(ARCHIVO);
@@ -75,15 +100,15 @@ HashMapTree<string> *WordCounter::loadHashTree() {
     int tamanio = 27;
     HashMapTree<string> *hash = new HashMapTree<string>(tamanio);
     string palabra, linea;
-        while (fich >> palabra) {
-            try {
-                palabra = soloPalabra(palabra);
-                hash->put(palabra, 1);
-            }
-            catch (int err) {
-
-            };
+    while (fich >> palabra) {
+        try {
+            palabra = soloPalabra(palabra);
+            hash->put(palabra, 1);
         }
+        catch (int err) {
+
+        };
+    }
     return hash;
 }
 
@@ -96,11 +121,11 @@ void WordCounter::basicas() {
 }
 
 void WordCounter::palabras(HashMapTree<string> *hash, int nPalabras) {
-   // HashMapTree<string> *hash = loadHashTree();
+    // HashMapTree<string> *hash = loadHashTree();
     ColaPrioridad<HashEntry<string> *> colaPrioridad;
     int count = 0;
     for (int i = 0; i < hash->size; ++i) {
-        if(hash->table[i] != NULL) {
+        if (hash->table[i] != NULL) {
             try {
                 hash->table[i]->inorder(nPalabras, count);
             }
@@ -129,6 +154,7 @@ void WordCounter::mostrar(string palabras) {
             colaPrioridad.encolarPrioridad(hash->getHashEntry(dato), hash->getHashEntry(dato)->getValue());
 
         } catch (int err) {
+            cerr << "error..." << err << endl;
         }
     }
     while (!colaPrioridad.esVacia()) {
@@ -178,6 +204,58 @@ HashMapTree<string> *WordCounter::palabrasExcluirf(string ARCHIVO_EXCLUIR) {
         }
     }
     return hash;
+}
+
+void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia, int nPalabras) {
+    Lista<HashEntry<string> *> hashordenado[hashocurrencia->maxocurrencia];
+    int count = hashocurrencia->maxocurrencia;
+    for (int i = 0; i < hashocurrencia->size; i++) {
+        try {
+            if (!hashocurrencia->table[i])
+                throw 404;
+            if (hashocurrencia->table[i]->esVacia())
+                throw 404;
+            else {
+                for (int j = 0; j < hashocurrencia->table[i]->getTamanio(); j++) {
+                    try {
+                        hashordenado[hashocurrencia->table[i]->getDato(j)->getValue()]
+                                .insertarPrimero(hashocurrencia->table[i]->getDato(j));
+                    }
+                    catch (int err) {
+                        cerr << "error... " << err << endl;
+                    }
+                }
+            }
+
+        } catch (int err) {
+        }
+    }
+
+
+    for (int i = 0; i < nPalabras; i) {
+        try {
+            for (int j = 0; j < hashordenado[count].getTamanio(); j++) {
+                if (i < nPalabras) {
+                    cout << hashordenado[count].getDato(j)->getKey() << ' '
+                         << hashordenado[count].getDato(j)->getValue() << endl;
+                    i++;
+                }
+            }
+        } catch (int err) {
+            cout << "Error" << endl;
+        }
+        count--;
+    }
+
+
+}
+
+HashMapList<string> *WordCounter::ocurrenciasExcluir(string palabras) {
+    return nullptr;
+}
+
+HashMapList<string> *WordCounter::ocurrenciasExcluirf(string ARCHIVO_EXCLUIR) {
+    return nullptr;
 }
 
 /*ArbolAlpha<string> *WordCounter::loadDataInTree() {
