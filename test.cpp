@@ -13,8 +13,12 @@ using namespace std;
 
 int main() {
     std::ios::sync_with_stdio(false);
+    unsigned t0, t1;
 
-    string ARCHIVO = "../db_texto/toseti.txt";
+    t0 = clock();
+        // Code to execute
+
+    string ARCHIVO = "db_texto/toseti.txt";
     WordCounter wce(ARCHIVO);
     int npalabras = 2;
     try {
@@ -22,6 +26,9 @@ int main() {
         wce.ocurrencias(wce.loadInHash());
     }
     catch (int err) { cerr << "error..." << err; }
+    t1 = clock();
 
+    double time = (double(t1 - t0) / CLOCKS_PER_SEC);
+    cout << "Execution Time: " << time << endl;
     return 0;
 }
