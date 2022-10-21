@@ -10,30 +10,42 @@ template<class K>
 class HashMapList {
 private:
     static unsigned int hashFunc(K key);
+
     unsigned int (*hashFuncP)(K key);
 
 public:
 
-    Lista<HashEntry<K>*> **table;
+    Lista<HashEntry<K> *> **table;
     unsigned int size;
     int posiciones = 0;
+    int maxocurrencia = 0;
+
     explicit HashMapList(unsigned int size);
+
     HashMapList(unsigned int k, unsigned int (*hashFuncP)(K key));
+
     ~HashMapList();
+
     HashEntry<K> *getHashEntry(K key);
+
     void put(K key, int valor);
+
+    void putOcurrence(K key, int valor);
+
     void remove(K key);
+
     bool esVacio();
+
     void print();
 
-//    void get(K key);
+    void get(K key);
 //    void putOcurrence(K key, int valor);
 };
 
 template<class K>
 HashMapList<K>::HashMapList(unsigned int size) {
     this->size = size;
-    table = new Lista<HashEntry<K>*> *[size];
+    table = new Lista<HashEntry<K> *> *[size];
     for (int i = 0; i < size; i++) {
         table[i] = NULL;
     }
@@ -43,7 +55,7 @@ HashMapList<K>::HashMapList(unsigned int size) {
 template<class K>
 HashMapList<K>::HashMapList(unsigned int k, unsigned int (*fp)(K)) {
     size = k;
-    table = new Lista<HashEntry<K>*> *[size];
+    table = new Lista<HashEntry<K> *> *[size];
     for (int i = 0; i < size; i++) {
         table[i] = NULL;
     }
@@ -60,15 +72,14 @@ HashMapList<K>::~HashMapList() {
 }
 
 
-
 template<class K>
 void HashMapList<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
-
     if (table[pos] == NULL) {
-        table[pos] = new Lista<HashEntry<K>*>;
+        table[pos] = new Lista<HashEntry<K> *>;
         posiciones++;
     }
+
     for (int i = 0; i < table[pos]->getTamanio(); ++i) {
 
         if (table[pos]->getDato(i)->getKey() == key) {
@@ -76,7 +87,30 @@ void HashMapList<K>::put(K key, int valor) {
             throw 404;
         }
     }
-    table[pos]->insertarUltimo( new HashEntry<K>(key, valor));
+    table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
+}
+
+template<class K>
+void HashMapList<K>::putOcurrence(K key, int valor) {
+    unsigned int pos = hashFuncP(key) % size;
+
+    if (table[pos] == NULL) {
+        table[pos] = new Lista<HashEntry<K> *>;
+        posiciones++;
+    }
+    for (int i = 0; i < table[pos]->getTamanio(); ++i) {
+
+        if (table[pos]->getDato(i)->getKey() == key) {
+            table[pos]->getDato(i)->incrementValue();
+            if (table[pos]->getDato(i)->getValue() > maxocurrencia)
+                maxocurrencia = table[pos]->getDato(i)->getValue();
+
+            throw 404;
+        }
+    }
+
+    table[pos]->insertarPrimero(new HashEntry<K>(key, valor));
+
 }
 
 template<class K>
@@ -113,7 +147,7 @@ unsigned int HashMapList<K>::hashFunc(K palabra) {
     float key = 0;
 
     for (int i = 0; i < palabra.length(); i++) {
-        key += (float(palabra[i])/13*float(palabra[i])/13)/11+key/131;
+        key += (float(palabra[i]) / 13 * float(palabra[i]) / 13) / 11 + key / 131;
     }
 
     key = key * 3019 * 3023;
@@ -152,11 +186,11 @@ HashEntry<K> *HashMapList<K>::getHashEntry(K key) {
         throw 2;
     }
 
-    Nodo<HashEntry<K>*> *aux = table[pos]->getinicio();
+    Nodo<HashEntry<K> *> *aux = table[pos]->getinicio();
     HashEntry<K> *hashEntry;
 
     while (aux != NULL) {
-        if(aux->getDato()->getKey()==key) {
+        if (aux->getDato()->getKey() == key) {
             hashEntry = aux->getDato();
             return hashEntry;
         }
@@ -182,7 +216,7 @@ void HashMapList<K>::put(K key, int valor) {
     table[pos]->insertarUltimo( new HashEntry<K>(key, valor));
 }*/
 
-/*template<class K>
+template<class K>
 void HashMapList<K>::get(K key) { // Método que devuelve la lista según la key que recibe
     unsigned int pos = hashFuncP(key) % size;
 
@@ -190,13 +224,13 @@ void HashMapList<K>::get(K key) { // Método que devuelve la lista según la key
         throw 404;
     }
 
-    Nodo<HashEntry<K>*> *aux = table[pos]->getinicio();
+    Nodo<HashEntry<K> *> *aux = table[pos]->getinicio();
 
     while (aux != NULL) {
         cout << aux->getDato()->getKey() << " " << aux->getDato()->getValue() << endl;
         aux = aux->getSiguiente();
     }
-}*/
+}
 
 
 #endif // U05_HASH_HASHMAP_HASHMAPLIST_H_

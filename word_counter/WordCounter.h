@@ -32,11 +32,15 @@ public:
     HashMapList<string> *load();
     HashMapList<string> *loadHashList();
     HashMapTree<string> *loadHashTree();
+    HashMapList<string> *loadInHash();
     void basicas();
     void palabras(HashMapTree<string> *hash ,int nPalabras = 0);
+    void ocurrencias(HashMapList<string> *hash, int nPalabras = 0);
     void mostrar(string palabras);
     HashMapTree<string> *palabrasExcluir(string palabras);
     HashMapTree<string> *palabrasExcluirf(string ARCHIVO_EXCLUIR);
+    HashMapList<string> *ocurrenciasExcluir(string palabras);
+    HashMapList<string> *ocurrenciasExcluirf(string ARCHIVO_EXCLUIR);
 
 //    void ocurrencias(HashMapList<string> *hash, int nPalabras = 0);
 //    ArbolAlpha<string> *loadDataInTree();

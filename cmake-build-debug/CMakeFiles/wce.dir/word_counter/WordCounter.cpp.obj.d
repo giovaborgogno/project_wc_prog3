@@ -1,7 +1,8 @@
-CMakeFiles/Test.dir/test.cpp.obj: \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\test.cpp \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/ArbolAlpha.h \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/NodoArbol.h \
+CMakeFiles/wce.dir/word_counter/WordCounter.cpp.obj: \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\word_counter\WordCounter.cpp \
+ C:\Users\jpbor\CLionProjects\project_wc_prog3\word_counter\WordCounter.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/NodoArbol.h \
  C:/msys64/mingw64/include/c++/12.2.0/iostream \
  C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/os_defines.h \
@@ -132,25 +133,19 @@ CMakeFiles/Test.dir/test.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.2.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/12.2.0/istream \
  C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/HashEntry.h \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/HashMapList.h \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/Lista.h \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\data_structs/Nodo.h \
- C:\Users\jpbor\CLionProjects\project_wc_prog3\word_counter/WordCounter.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashEntry.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Cola.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Nodo.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ColaPrioridad.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/NodoPrioridad.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapList.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Lista.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapTree.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashEntry.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
- C:/msys64/mingw64/include/c++/12.2.0/ctime \
- C:/msys64/mingw64/include/c++/12.2.0/sstream \
- C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc \
  C:/msys64/mingw64/include/c++/12.2.0/fstream \
  C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h \
  C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/c++io.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/fstream.tcc
+ C:/msys64/mingw64/include/c++/12.2.0/bits/fstream.tcc \
+ C:/msys64/mingw64/include/c++/12.2.0/sstream \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc
