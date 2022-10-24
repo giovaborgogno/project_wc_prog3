@@ -142,6 +142,8 @@ CMakeFiles/wce.dir/word_counter/WordCounter.cpp.obj: \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Lista.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapTree.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Pila.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/nodo.h \
  C:/msys64/mingw64/include/c++/12.2.0/fstream \
  C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h \
  C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/basic_file.h \

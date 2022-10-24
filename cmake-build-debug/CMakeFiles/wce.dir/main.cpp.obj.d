@@ -150,4 +150,6 @@ CMakeFiles/wce.dir/main.cpp.obj: \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapList.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashMapTree.h \
  C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/HashEntry.h \
- C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/ArbolAlpha.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/Pila.h \
+ C:/Users/jpbor/CLionProjects/project_wc_prog3/data_structs/nodo.h
