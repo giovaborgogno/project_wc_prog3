@@ -31,6 +31,8 @@ public:
     void setinicio(Nodo<T> *inicio){
         this->inicio=inicio;
     }
+
+    void remove(HashEntry<string> *hashEntry);
 };
 
 /**
@@ -187,6 +189,32 @@ template <class T> void Lista<T>::remover(int pos) {
 
 }
 
+template <class T> void Lista<T>::remove(HashEntry<string> *hashEntry) {
+    Nodo<T> *auxNodo1=inicio, *auxNodo2= inicio;
+
+    if(inicio->getDato()->getKey() == hashEntry->getKey()){
+        inicio=inicio->getSiguiente();
+        auxNodo1->setSiguiente(NULL);
+        delete auxNodo1;
+        tamanio--;
+        return;
+    }
+
+    //Nodo anterior al que se desea eliminar
+    while(auxNodo1 != NULL && auxNodo1->getDato()->getKey() != hashEntry->getKey()){
+        auxNodo1=auxNodo1->getSiguiente();
+    }
+    if(auxNodo1==NULL) throw 406;
+
+    //Nodo que se desea eliminar
+    auxNodo2=auxNodo1->getSiguiente();
+
+    auxNodo1->setSiguiente(auxNodo2->getSiguiente());
+    auxNodo2->setSiguiente(NULL);
+    tamanio--;
+    delete auxNodo2;
+
+}
 
 
 /**

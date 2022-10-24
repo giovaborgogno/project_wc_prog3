@@ -280,11 +280,44 @@ void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia,int nPalabras)
 }
 
 HashMapList<string> *WordCounter::ocurrenciasExcluir(string palabras) {
-  return nullptr;
+    HashMapList<string> *hash = loadInHash();
+    stringstream stream(palabras);
+    Cola<string> cola;
+    string palabra;
+    while (stream >> palabra) {
+        cola.encolar(soloPalabra(palabra));
+    }
+    while (!cola.esVacia()) {
+        try {
+            hash->remove(cola.desencolar());
+        } catch (int err) {
+        }
+    }
+    return hash;
 }
 
 HashMapList<string> *WordCounter::ocurrenciasExcluirf(string ARCHIVO_EXCLUIR) {
-  return nullptr;
+    HashMapList<string> *hash = loadInHash();
+    Cola<string> cola;
+    ifstream fich(ARCHIVO_EXCLUIR);
+    if (!fich.is_open()) {
+        cout << "Error al abrir el archivo";
+        exit(EXIT_FAILURE);
+    }
+    string palabra;
+    while (fich >> palabra) {
+        try {
+            cola.encolar(palabra);
+        } catch (int err) {
+        };
+    }
+    while (!cola.esVacia()) {
+        try {
+            hash->remove(cola.desencolar());
+        } catch (int err) {
+        }
+    }
+    return hash;
 }
 
 /*ArbolAlpha<string> *WordCounter::loadDataInTree() {

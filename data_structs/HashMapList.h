@@ -123,9 +123,9 @@ void HashMapList<K>::remove(K key) {
 
     int dato; // = get(key);
 
-    table[pos]->remove({key, dato});
+    table[pos]->remove(getHashEntry(key));
 
-    if (table[pos]->esVacio()) {
+    if (table[pos]->esVacia()) {
         delete table[pos];
         table[pos] = NULL;
     }
