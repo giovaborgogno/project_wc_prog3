@@ -202,29 +202,18 @@ HashMapTree<string> *WordCounter::palabrasExcluirf(string ARCHIVO_EXCLUIR) {
   return hash;
 }
 
-void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia) {
-  ocurrencias(hashocurrencia, 0);
-}
-
 void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia,int nPalabras) {
   Pila<HashEntry<string> *> hashordenado[hashocurrencia->maxocurrencia];
   int count = hashocurrencia->maxocurrencia;
   for (int i = 0; i < hashocurrencia->size; i++) {
     try {
-      if (!hashocurrencia->table[i])
-        throw 404;
-      if (hashocurrencia->table[i]->esVacia())
-        throw 404;
-      else {
+      if (hashocurrencia->table[i] != NULL){
         for (int j = 0; j < hashocurrencia->table[i]->getTamanio(); j++) {
-          try {
             hashordenado[hashocurrencia->table[i]->getDato(j)->getValue()].push(
                 hashocurrencia->table[i]->getDato(j));
-          } catch (int err) {
-            cerr << "error... " << err << endl;
-          }
         }
       }
+      else throw 409;
 
     } catch (int err) {
     }
@@ -235,7 +224,7 @@ void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia,int nPalabras)
       try {
         while (hashordenado[count].esVacia() == false) {
             cout << hashordenado[count].peek()->getKey() << ' '
-                << hashordenado[count].pop()->getValue() << endl;
+            << hashordenado[count].pop()->getValue() << '\n';
         }
       } catch (int err) {
         cout << "Error" << endl;
@@ -250,7 +239,7 @@ void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia,int nPalabras)
       while (hashordenado[count].esVacia() == false) {
         if (i < nPalabras) {
           cout << hashordenado[count].peek()->getKey() << ' '
-               << hashordenado[count].pop()->getValue() << endl;
+               << hashordenado[count].pop()->getValue() << '\n';
           i++;
         }
       }

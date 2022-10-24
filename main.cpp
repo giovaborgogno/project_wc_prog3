@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     unsigned t0, t1;
     t0 = clock();
 
-    std::ios::sync_with_stdio(false);
+   cout.sync_with_stdio(false);
 
 
      /*
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
         cout << "-ocurrencias\n\n";
         string ARCHIVO = argv[2];
         WordCounter wce(ARCHIVO);
-        wce.ocurrencias(wce.loadHashList());
+        wce.ocurrencias(wce.loadInHash());
     }
     else if (argc == 4 && strcmp(argv[1], "-ocurrencias") == 0 && !argv[4]) {
         cout << "-ocurrencias [n]\n\n";
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
         WordCounter wce(ARCHIVO);
         int npalabras = stoi(argv[2]);
         try{
-        wce.ocurrencias(wce.loadHashList(), npalabras);
+        wce.ocurrencias(wce.loadInHash(), npalabras);
         }
         catch(int err){cerr << "error..." << err;}
     }

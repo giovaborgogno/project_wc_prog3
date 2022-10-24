@@ -34,8 +34,7 @@ public:
   HashMapList<string> *loadInHash();
   void basicas();
   void palabras(HashMapTree<string> *hash, int nPalabras = 0);
-  void ocurrencias(HashMapList<string> *hash);
-  void ocurrencias(HashMapList<string> *hash, int nPalabras);
+  void ocurrencias(HashMapList<string> *hash, int nPalabras=0);
   void mostrar(string palabras);
   HashMapTree<string> *palabrasExcluir(string palabras);
   HashMapTree<string> *palabrasExcluirf(string ARCHIVO_EXCLUIR);
