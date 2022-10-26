@@ -68,7 +68,7 @@ template <class T> T Pila<T>::pop() {
   if (esVacia()) {
     throw 400;
   }
-
+  
   T dato = tope->getDato();
   Nodo<T> *aBorrar = tope;
   tope = tope->getSiguiente();

@@ -3,7 +3,7 @@
 
 #include "HashEntry.h"
 #include "Lista.h"
-
+#include <ctime>
 
 // table hash con manejo de colisiones usando listas enlazadas
 template<class K>
@@ -15,7 +15,7 @@ private:
 
 public:
 
-    Lista<HashEntry<K> *> **table;
+    Lista<HashEntry<K>*> **table;
     unsigned int size;
     int posiciones = 0;
     int maxocurrencia = 0;
@@ -79,38 +79,40 @@ void HashMapList<K>::put(K key, int valor) {
         table[pos] = new Lista<HashEntry<K> *>;
         posiciones++;
     }
-
-    for (int i = 0; i < table[pos]->getTamanio(); ++i) {
-
-        if (table[pos]->getDato(i)->getKey() == key) {
-            table[pos]->getDato(i)->incrementValue();
-            throw 404;
-        }
-    }
-    table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
+    table[pos]->insertarHashEntry2(new HashEntry<K>(key, valor));
+    // for (int i = 0; i < table[pos]->getTamanio(); ++i) {
+    //     if (table[pos]->getDato(i)->getKey() == key) {
+    //         table[pos]->getDato(i)->incrementValue();
+    //         throw 404;
+    //     }
+    // }
+    
+    // table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
 }
 
 template<class K>
 void HashMapList<K>::putOcurrence(K key, int valor) {
-    unsigned int pos = hashFuncP(key) % size;
+  
+  unsigned int pos = hashFuncP(key) % size;
 
-    if (table[pos] == NULL) {
-        table[pos] = new Lista<HashEntry<K> *>;
-        posiciones++;
+  if (table[pos] == NULL) {
+    table[pos] = new Lista<HashEntry<K> *>;
+    posiciones++;
     }
-    for (int i = 0; i < table[pos]->getTamanio(); ++i) {
+  
+  maxocurrencia=table[pos]->insertarHashEntry(new HashEntry<K>(key, valor),maxocurrencia);
 
-        if (table[pos]->getDato(i)->getKey() == key) {
-            table[pos]->getDato(i)->incrementValue();
-            if (table[pos]->getDato(i)->getValue() > maxocurrencia)
-                maxocurrencia = table[pos]->getDato(i)->getValue();
+    // for (int i = 0; i < table[pos]->getTamanio(); ++i) {
 
-            throw 404;
-        }
-    }
+    //     if (table[pos]->getDato(i)->getKey() == key) {
+    //         table[pos]->getDato(i)->incrementValue();
+    //         if (table[pos]->getDato(i)->getValue() > maxocurrencia)
+    //             maxocurrencia = table[pos]->getDato(i)->getValue();
 
-    table[pos]->insertarPrimero(new HashEntry<K>(key, valor));
-
+    //         throw 404;
+    //     }
+    // }
+   
 }
 
 template<class K>

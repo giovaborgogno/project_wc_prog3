@@ -14,6 +14,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
+
     unsigned t0, t1;
     t0 = clock();
 
@@ -88,7 +89,7 @@ int main(int argc, char *argv[]) {
         cout << "-ocurrencias\n\n";
         string ARCHIVO = argv[2];
         WordCounter wce(ARCHIVO);
-        wce.ocurrencias(wce.loadInHash());
+        wce.ocurrencias(wce.loadHashList_occurrence());
     }
     else if (argc == 4 && strcmp(argv[1], "-ocurrencias") == 0 && !argv[4]) {
         cout << "-ocurrencias [n]\n\n";
@@ -96,7 +97,7 @@ int main(int argc, char *argv[]) {
         WordCounter wce(ARCHIVO);
         int npalabras = stoi(argv[2]);
         try{
-        wce.ocurrencias(wce.loadInHash(), npalabras);
+        wce.ocurrencias(wce.loadHashList_occurrence(), npalabras);
         }
         catch(int err){cerr << "error..." << err;}
     }

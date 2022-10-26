@@ -11,6 +11,7 @@
 #include "../data_structs/HashMapList.h"
 #include "../data_structs/HashMapTree.h"
 #include "../data_structs/Pila.h"
+
 /*
  *
  */
@@ -31,7 +32,7 @@ public:
   HashMapList<string> *load();
   HashMapList<string> *loadHashList();
   HashMapTree<string> *loadHashTree();
-  HashMapList<string> *loadInHash();
+  HashMapList<string> *loadHashList_occurrence();
   void basicas();
   void palabras(HashMapTree<string> *hash, int nPalabras = 0);
   void ocurrencias(HashMapList<string> *hash, int nPalabras=0);
