@@ -22,8 +22,8 @@ public:
   void insertar(int pos, T dato);
   void insertarPrimero(T dato);
   void insertarUltimo(T dato);
-  int insertarHashEntry(HashEntry<string> *HashEntry, int maxocurrencia);
-  bool insertarHashEntry2(HashEntry<string> *HashEntry);
+  int insertarHashEntry_occurrence(HashEntry<string> *HashEntry, int maxocurrencia);
+  bool insertarHashEntry(HashEntry<string> *HashEntry);
   void remover(int pos);
   T getDato(int pos);
   void reemplazar(int pos, T dato);
@@ -155,12 +155,12 @@ template <class T> void Lista<T>::insertarUltimo(T dato) {
 }
 
 /**
- * Inserta un HashEntry y verifica ocurrencia de la palabra
+ * Inserta un HashEntry y retorna la maxima ocurrencia del texto
  * @tparam T
- * @param dato dato a insertar
+ * @param HashEntry<string>* dato a insertar
  */
 template <class T>
-int Lista<T>::insertarHashEntry(HashEntry<string> *HashEntry,
+int Lista<T>::insertarHashEntry_occurrence(HashEntry<string> *HashEntry,
                                 int maxocurrencia) {
   Nodo<T> *auxNodo = inicio, *nuevo = new Nodo<T>(HashEntry);
 
@@ -185,8 +185,15 @@ int Lista<T>::insertarHashEntry(HashEntry<string> *HashEntry,
     return maxocurrencia;
 }
 
+/**
+ * Inserta un HashEntry
+ * @tparam T
+ * @param HashEntry<string>* dato a insertar
+ * @return true insersion exitosa
+ * @return false dato ya existente
+ */
 template <class T>
-bool Lista<T>::insertarHashEntry2(HashEntry<string> *HashEntry) {
+bool Lista<T>::insertarHashEntry(HashEntry<string> *HashEntry) {
   Nodo<T> *auxNodo = inicio, *nuevo = new Nodo<T>(HashEntry);
 
   if (esVacia()) {
@@ -242,6 +249,11 @@ template <class T> void Lista<T>::remover(int pos) {
   delete auxNodo2;
 }
 
+/**
+ * Elimina el nodo con el key del HashEntry de la lista enlasada
+ * @tparam T
+ * @param HashEntry<string>* nodo a eliminar
+ */
 template <class T> void Lista<T>::remove(HashEntry<string> *hashEntry) {
   Nodo<T> *auxNodo1 = inicio, *auxNodo2 = inicio;
 

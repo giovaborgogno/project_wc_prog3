@@ -8,6 +8,10 @@
 #include "NodoArbol.h"
 #include "HashEntry.h"
 
+/**
+ * Clase que implementa una Arbol Binario
+ * @tparam T cualquier tipo de dato
+ */
 template<class T>
 class ArbolAlpha {
 private:
@@ -18,13 +22,6 @@ private:
     void inorder(NodoArbol<HashEntry<string>*> *r);
     void inorder(int nPalabras, NodoArbol<HashEntry<string>*> *r, int &count);
 
-
-    /* anteriores metodos borrar cuando estemos seguros de que no los necesitamos*/
-//    T search(T data, NodoArbol<T> *r);
-//    NodoArbol<T> *put(T data, NodoArbol<T> *r);
-//    void inorder(NodoArbol<T> *r);
-//    void inorder(int nPalabras, NodoArbol<T> *r, int &count);
-//    void setArbolOccurrence(NodoArbol<T> *r);
 protected:
     NodoArbol<T> *root;
 
@@ -38,18 +35,11 @@ public:
     void inorder(int nPalabras, int &count);
     void put(HashEntry<string> *dato);
 
-    /* anteriores metodos borrar cuando estemos seguros de que no los necesitamos*/
-//    void put(T dato);
-//    T search(T dato);
-//    void inorder(int nPalabras = 0);
-//    void setArbolOccurrence();
-//    void inorderOccurrence(int nPalabras = 0);
 };
 
 /**
  * Constructor del Arbol
  * @tparam K Clave por la cual va a ordenar el árbol
- * @tparam T Valor guardado por el árbol
  */
 template<class T>
 ArbolAlpha<T>::ArbolAlpha() {
@@ -65,11 +55,9 @@ ArbolAlpha<T>::~ArbolAlpha() {}
 /**
  * Busca un dato en el árbol. Si no esta el dato en el árbol
  * tira una excepción
- * @param clave Valor a buscar
+ * @param dato Valor a buscar
  * @return el valor buscado
  */
-
-
 template<class T>
 T ArbolAlpha<T>::search(T dato) { return search(dato, root); }
 template<class T>
@@ -82,13 +70,10 @@ T ArbolAlpha<T>::search(HashEntry<string> *data, NodoArbol<HashEntry<string>*> *
 
 /**
  * Agrega un dato al árbol
- * @param clave Clave para agregar el dato
- * @param dato Dato a agregar
+ * @param dato Dato para agregar al arbol
  */
-
 template<class T>
 void ArbolAlpha<T>::put(HashEntry<string>* dato) { root = put(dato, root); }
-
 template<class T>
 NodoArbol<T> *ArbolAlpha<T>::put(HashEntry<string>* data, NodoArbol<HashEntry<string>*> *r) {
     if (r == nullptr) return new NodoArbol<T>(data);
@@ -103,29 +88,16 @@ NodoArbol<T> *ArbolAlpha<T>::put(HashEntry<string>* data, NodoArbol<HashEntry<st
 
 /**
  * Informa si un árbol esta vacío
- * @return
+ * @return bool si esta vacio: True
  */
 template<class T>
 bool ArbolAlpha<T>::esVacio() { return root == nullptr; }
 
-
 /**
- * Recorre un árbol en orden
+ * Remueve un dato en el árbol. Si no esta el dato en el árbol
+ * tira una excepción
+ * @param dato Valor a remover
  */
-
-
-
-/**
- * Muestra un árbol por consola
- */
-template<class T>
-void ArbolAlpha<T>::print() {
-    if (root != NULL)
-        root->print(false, "");
-}
-
-
-
 template<class T>
 void ArbolAlpha<T>::remove(T dato) { root = remove(dato, root); }
 template<class T> NodoArbol<T> *ArbolAlpha<T>::remove(HashEntry<string>* data, NodoArbol<HashEntry<string>*> *r) {
@@ -141,7 +113,6 @@ template<class T> NodoArbol<T> *ArbolAlpha<T>::remove(HashEntry<string>* data, N
     }
     return r;
 }
-
 template<class T>
 T ArbolAlpha<T>::inOrderSuccessor(NodoArbol<T> *r) {
     T minimum = r->getData();
@@ -152,28 +123,27 @@ T ArbolAlpha<T>::inOrderSuccessor(NodoArbol<T> *r) {
     return minimum;
 }
 
+/**
+ * Imprime los datos del arbol en orden
+ */
 template<class T>
 void ArbolAlpha<T>::inorder(int nPalabras, int &count) {
     if (nPalabras == 0) {
         inorder(root);
         return;
     }
-//    int a = 0;
     inorder(nPalabras, root, count);
 }
-
 template<class T>
 void ArbolAlpha<T>::inorder(NodoArbol<HashEntry<string>*> *r) {
     if (r == nullptr) return;
     try {
     inorder(r->getLeft());
-//    cout << r->getData() << " " << r->getOcurrencia() << " ,";
         cout << r->getData()->getKey() << "\n";
         inorder(r->getRight());
     }
     catch(int err){}
 }
-
 template<class T>
 void ArbolAlpha<T>::inorder(int nPalabras, NodoArbol<HashEntry<string>*> *r, int &count) {
     if (r == nullptr) return;
@@ -185,87 +155,5 @@ void ArbolAlpha<T>::inorder(int nPalabras, NodoArbol<HashEntry<string>*> *r, int
         inorder(nPalabras, r->getRight(), count);
     }
 }
-
-/*template<class T>
-T ArbolAlpha<T>::search(T dato) { return search(dato, root); }
-
-template<class T>
-T ArbolAlpha<T>::search(T data, NodoArbol<T> *r) {
-    if (r == nullptr)throw 702;
-    if (r->getData() == data)return r->getData();
-    if (r->getData() > data)return search(data, r->getLeft());
-    else return search(data, r->getRight());
-}*/
-
-/*
-template<class T>
-void ArbolAlpha<T>::inorderOccurrence(int nPalabras) {
-    if (nPalabras == 0) {
-        inorder(ArbolOcurrence->root);
-        return;
-    }
-    int a = 0;
-    inorder(nPalabras, ArbolOcurrence->root, a);
-}
-*/
-
-/*template<class T>
-void ArbolAlpha<T>::inorder(int nPalabras) {
-    if (nPalabras == 0) {
-        inorder(root);
-        return;
-    }
-    int a = 0;
-    inorder(nPalabras, root, a);
-}
-
-template<class T>
-void ArbolAlpha<T>::inorder(NodoArbol<T> *r) {
-    if (r == nullptr) return;
-    inorder(r->getLeft());
-    cout << r->getData() << " " << r->getOcurrencia() << "\n";
-    inorder(r->getRight());
-}
-
-template<class T>
-void ArbolAlpha<T>::inorder(int nPalabras, NodoArbol<T> *r, int &count) {
-    if (r == nullptr) return;
-    if (count == nPalabras) return;
-    inorder(nPalabras, r->getLeft(), count);
-    if (nPalabras > count) {
-        cout << r->getData() << " " << r->getOcurrencia() << "\n";
-        count++;
-        inorder(nPalabras, r->getRight(), count);
-    }
-}*/
-/*template<class T>
-void ArbolAlpha<T>::setArbolOccurrence(){ setArbolOccurrence(root);}
-template<class T>
-void ArbolAlpha<T>::setArbolOccurrence(NodoArbol<T> *r) {
-    if (r == nullptr) return;
-    setArbolOccurrence(r->getLeft());
-    try {
-
-    ArbolOcurrence->put(r->getData(),r->getOcurrencia());
-    } catch (int err) {
-        cerr << "Error...\n";
-    }
-    setArbolOccurrence(r->getRight());
-}*/
-
-/*template<class T>
-void ArbolAlpha<T>::put(T dato) { root = put(dato, root); }
-
-template<class T>
-NodoArbol<T> *ArbolAlpha<T>::put(T data, NodoArbol<T> *r) {
-    if (r == nullptr) return new NodoArbol<T>(data);
-    if (r->getData() == data) {
-        r->aumentarOcurrencia();
-        throw 707;
-    }
-    if (r->getData() > data) r->setLeft(put(data, r->getLeft()));
-    else r->setRight(put(data, r->getRight()));
-    return r;
-}*/
 
 #endif //PROJECT_WC_PROG3_ARBOLALPHA_H

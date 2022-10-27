@@ -5,7 +5,11 @@
 #include "ArbolAlpha.h"
 
 
-// table hash con manejo de colisiones usando arboles binarios
+/**
+ * Clase que implementa una Table Hash con 
+ * manejo de excepciones usando Arboles Binarios
+ * @tparam T cualquier tipo de dato
+ */
 template<class K>
 class HashMapTree{
 private:
@@ -26,10 +30,12 @@ public:
     void remove(K key);
     bool esVacio();
 
-//    void print();
-//    void get(K key);
 };
 
+/**
+ * Constructor de la clase HashMapTree
+ * @param int size 
+ */
 template<class K>
 HashMapTree<K>::HashMapTree(unsigned int size) {
     this->size = size;
@@ -40,6 +46,10 @@ HashMapTree<K>::HashMapTree(unsigned int size) {
     hashFuncP = hashFunc;
 }
 
+/**
+ * Constructor de la clase HashMapTree
+ * @param int size 
+ */
 template<class K>
 HashMapTree<K>::HashMapTree(unsigned int k, unsigned int (*fp)(K)) {
     size = k;
@@ -50,6 +60,11 @@ HashMapTree<K>::HashMapTree(unsigned int k, unsigned int (*fp)(K)) {
     hashFuncP = fp;
 }
 
+/**
+ * Destructor de la clase HashMapTree, se encarga de liberar la memoria de todos los
+ * nodos utilizados en el HashMapTree
+ * @tparam T
+ */
 template<class K>
 HashMapTree<K>::~HashMapTree() {
     for (int i = 0; i < size; i++) {
@@ -59,6 +74,13 @@ HashMapTree<K>::~HashMapTree() {
     }
 }
 
+/**
+ * Inserta un dato en el table hash
+ * 
+ * @tparam K 
+ * @param key 
+ * @param valor 
+ */
 template<class K>
 void HashMapTree<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
@@ -66,10 +88,14 @@ void HashMapTree<K>::put(K key, int valor) {
     try{table[pos]->put(new HashEntry<K>(key, valor));}
     catch (int err) {
     }
-
-
 }
 
+/**
+ * Remueve del table Hash el dato que contenga el key
+ * 
+ * @tparam K 
+ * @param key 
+ */
 template<class K>
 void HashMapTree<K>::remove(K key) {
     unsigned int pos = hashFuncP(key) % size;
@@ -85,6 +111,12 @@ void HashMapTree<K>::remove(K key) {
     }
 }
 
+/**
+ * Muestra si esta vacio el table hash
+ * 
+ * @tparam K 
+ * @return bool
+ */
 template<class K>
 bool HashMapTree<K>::esVacio() {
     for (int i = 0; i < size; i++) {
@@ -95,6 +127,13 @@ bool HashMapTree<K>::esVacio() {
     return true;
 }
 
+/**
+ * Funcion Hash 
+ * 
+ * @tparam K 
+ * @param palabra 
+ * @return unsigned int posicion donde se guardara la palabra
+ */
 template<class K>
 unsigned int HashMapTree<K>::hashFunc(K palabra) {
 
@@ -104,6 +143,13 @@ unsigned int HashMapTree<K>::hashFunc(K palabra) {
     return (unsigned int) key;
 }
 
+/**
+ * Retorna el HashEntry con el key pasado por parametro 
+ * 
+ * @tparam K 
+ * @param key 
+ * @return HashEntry<K>* 
+ */
 template<class K>
 HashEntry<K> *HashMapTree<K>::getHashEntry(K key) {
     unsigned int pos = hashFuncP(key) % size;
@@ -113,47 +159,5 @@ HashEntry<K> *HashMapTree<K>::getHashEntry(K key) {
     HashEntry<K> *aux = new HashEntry<K>(key, 1);
     return table[pos]->search(aux);
 }
-
-/*template<class K>
-void HashMapTree<K>::get(K key) { // Método que devuelve la lista según la key que recibe
-    unsigned int pos = hashFuncP(key) % size;
-
-    if (table[pos] == NULL) {
-        throw 404;
-    }
-
-    NodoArbol<HashEntry<K>*> *aux = table[pos]->getinicio();
-
-    while (aux != NULL) {
-        cout << aux->getDato()->getKey() << " " << aux->getDato()->getValue() << endl;
-        aux = aux->getSiguiente();
-    }
-}*/
-
-/*template<class K>
-void HashMapTree<K>::print() {
-
-    std::cout << "i"
-              << " "
-              << "Clave"
-              << "\t\t"
-              << "Valor" << std::endl;
-    std::cout << "--------------------" << std::endl;
-    for (int i = 0; i < size; i++) {
-        std::cout << i << " ";
-        if (table[i] != NULL) {
-            try {
-                std::cout << table[i]->getDato(0)->getKey() << "\t\t";
-                std::cout << table[i]->getDato(0)->getValue();
-            }
-            catch (int err) {
-
-            }
-        }
-        std::cout << std::endl;
-    }
-}*/
-
-
 
 #endif // U05_HASH_HASHMAP_HASHMAPTREE_H_

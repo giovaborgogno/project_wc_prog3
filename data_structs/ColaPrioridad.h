@@ -6,7 +6,6 @@
 #define INC_2021A2_U04_COLAS_GIOVABORGOGNO_COLAPRIORIDAD_H
 #include "NodoPrioridad.h"
 
-#define SIN_PRIORIDAD 1000000
 
 /**
  * Clase que implementa una Cola generica, ya que puede
@@ -21,19 +20,12 @@ private:
 
 public:
     ColaPrioridad();
-
     ~ColaPrioridad();
-
     void encolar(T dato);
-
     void encolarPrioridad(T dato, int prioridad);
-
     void encolarPrioridadString(T dato, string prioridad);
-
     T desencolar();
-
     bool esVacia();
-
     T peek();
 };
 
@@ -125,17 +117,16 @@ T ColaPrioridad<T>::peek()
     return tope->getDato();
 }
 
+/**
+ * Inserta un dato en la Cola con prioridad 
+ * @tparam T dato a insertar
+ * @param int prioridad
+ */
 template <class T>
 void ColaPrioridad<T>::encolarPrioridad(T dato, int prioridad)
 {
 
-//    if (prioridad >= SIN_PRIORIDAD){
-//        encolar(dato);
-//        return;
-//    }
-
     NodoPrioridad<T> *nuevo = new NodoPrioridad<T>(dato,prioridad);
-
 
     if(esVacia()){
         nuevo->setSiguiente(nullptr);
@@ -156,39 +147,6 @@ void ColaPrioridad<T>::encolarPrioridad(T dato, int prioridad)
     }
     NodoPrioridad<T> *aux = tope;
     while (aux->getSiguiente()!= nullptr && aux->getSiguiente()->getPrioridad() >= prioridad){
-        aux = aux->getSiguiente();
-    }
-
-    nuevo->setSiguiente(aux->getSiguiente());
-    aux->setSiguiente(nuevo);
-}
-
-template<class T>
-void ColaPrioridad<T>::encolarPrioridadString(T dato, string prioridad) {
-
-
-    NodoPrioridad<T> *nuevo = new NodoPrioridad<T>(dato,prioridad);
-
-
-    if(esVacia()){
-        nuevo->setSiguiente(nullptr);
-        tope = nuevo;
-        fondo = nuevo;
-        return;
-    }
-    if (tope->getPrioridadString() > prioridad){
-        nuevo->setSiguiente(tope);
-        tope = nuevo;
-        return;
-    }
-    if(tope->getSiguiente()== nullptr){
-
-        tope->setSiguiente(nuevo);
-        fondo = nuevo;
-        return;
-    }
-    NodoPrioridad<T> *aux = tope;
-    while (aux->getSiguiente()!= nullptr && aux->getSiguiente()->getPrioridadString() <= prioridad){
         aux = aux->getSiguiente();
     }
 

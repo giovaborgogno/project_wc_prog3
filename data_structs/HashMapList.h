@@ -5,7 +5,11 @@
 #include "Lista.h"
 #include <ctime>
 
-// table hash con manejo de colisiones usando listas enlazadas
+/**
+ * Clase que implementa una Table Hash con 
+ * manejo de excepciones usando Listas Enlazadas
+ * @tparam T cualquier tipo de dato
+ */
 template<class K>
 class HashMapList {
 private:
@@ -21,27 +25,21 @@ public:
     int maxocurrencia = 0;
 
     explicit HashMapList(unsigned int size);
-
     HashMapList(unsigned int k, unsigned int (*hashFuncP)(K key));
-
     ~HashMapList();
-
     HashEntry<K> *getHashEntry(K key);
-
     bool put(K key, int valor);
-
     void putOcurrence(K key, int valor);
-
     void remove(K key);
-
     bool esVacio();
-
     void print();
-
     void get(K key);
-//    void putOcurrence(K key, int valor);
 };
 
+/**
+ * Constructor de la clase HashMapList
+ * @param int size 
+ */
 template<class K>
 HashMapList<K>::HashMapList(unsigned int size) {
     this->size = size;
@@ -52,6 +50,10 @@ HashMapList<K>::HashMapList(unsigned int size) {
     hashFuncP = hashFunc;
 }
 
+/**
+ * Constructor de la clase HashMapList
+ * @param int size 
+ */
 template<class K>
 HashMapList<K>::HashMapList(unsigned int k, unsigned int (*fp)(K)) {
     size = k;
@@ -62,6 +64,11 @@ HashMapList<K>::HashMapList(unsigned int k, unsigned int (*fp)(K)) {
     hashFuncP = fp;
 }
 
+/**
+ * Destructor de la clase HashMapList, se encarga de liberar la memoria de todos los
+ * nodos utilizados en el HashMapList
+ * @tparam T
+ */
 template<class K>
 HashMapList<K>::~HashMapList() {
     for (int i = 0; i < size; i++) {
@@ -71,7 +78,14 @@ HashMapList<K>::~HashMapList() {
     }
 }
 
-
+/**
+ * Inserta un dato en el table hash
+ * 
+ * @tparam K 
+ * @param key 
+ * @param valor 
+ * @return bool
+ */
 template<class K>
 bool HashMapList<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
@@ -79,10 +93,17 @@ bool HashMapList<K>::put(K key, int valor) {
         table[pos] = new Lista<HashEntry<K> *>;
         posiciones++;
     }
-    return table[pos]->insertarHashEntry2(new HashEntry<K>(key, valor));
+    return table[pos]->insertarHashEntry(new HashEntry<K>(key, valor));
 
 }
 
+/**
+ * Inserta un dato en el table hash seteando la ocurrencia del key
+ * 
+ * @tparam K 
+ * @param key 
+ * @param valor 
+ */
 template<class K>
 void HashMapList<K>::putOcurrence(K key, int valor) {
   
@@ -93,10 +114,16 @@ void HashMapList<K>::putOcurrence(K key, int valor) {
     posiciones++;
     }
   
-  maxocurrencia=table[pos]->insertarHashEntry(new HashEntry<K>(key, valor),maxocurrencia);
+  maxocurrencia=table[pos]->insertarHashEntry_occurrence(new HashEntry<K>(key, valor),maxocurrencia);
    
 }
 
+/**
+ * Remueve del table Hash el dato que contenga el key
+ * 
+ * @tparam K 
+ * @param key 
+ */
 template<class K>
 void HashMapList<K>::remove(K key) {
     unsigned int pos = hashFuncP(key) % size;
@@ -104,8 +131,6 @@ void HashMapList<K>::remove(K key) {
     if (table[pos] == NULL) {
         throw 404;
     }
-
-    int dato; // = get(key);
 
     table[pos]->remove(getHashEntry(key));
 
@@ -115,6 +140,12 @@ void HashMapList<K>::remove(K key) {
     }
 }
 
+/**
+ * Muestra si esta vacio el table hash
+ * 
+ * @tparam K 
+ * @return bool
+ */
 template<class K>
 bool HashMapList<K>::esVacio() {
     for (int i = 0; i < size; i++) {
@@ -125,6 +156,13 @@ bool HashMapList<K>::esVacio() {
     return true;
 }
 
+/**
+ * Funcion Hash 
+ * 
+ * @tparam K 
+ * @param palabra 
+ * @return unsigned int posicion donde se guardara la palabra
+ */
 template<class K>
 unsigned int HashMapList<K>::hashFunc(K palabra) {
 
@@ -139,30 +177,13 @@ unsigned int HashMapList<K>::hashFunc(K palabra) {
     return (unsigned int) key;
 }
 
-template<class K>
-void HashMapList<K>::print() {
-
-    std::cout << "i"
-              << " "
-              << "Clave"
-              << "\t\t"
-              << "Valor" << std::endl;
-    std::cout << "--------------------" << std::endl;
-    for (int i = 0; i < size; i++) {
-        std::cout << i << " ";
-        if (table[i] != NULL) {
-            try {
-                std::cout << table[i]->getDato(0)->getKey() << "\t\t";
-                std::cout << table[i]->getDato(0)->getValue();
-            }
-            catch (int err) {
-
-            }
-        }
-        std::cout << std::endl;
-    }
-}
-
+/**
+ * Retorna el HashEntry con el key pasado por parametro 
+ * 
+ * @tparam K 
+ * @param key 
+ * @return HashEntry<K>* 
+ */
 template<class K>
 HashEntry<K> *HashMapList<K>::getHashEntry(K key) {
     unsigned int pos = hashFuncP(key) % size;
@@ -183,25 +204,9 @@ HashEntry<K> *HashMapList<K>::getHashEntry(K key) {
     throw 123;
 }
 
-/*template<class K>
-void HashMapList<K>::put(K key, int valor) {
-    unsigned int pos = hashFuncP(key) % size;
-
-    if (table[pos] == NULL) {
-        table[pos] = new Lista<HashEntry<K>*>;
-        posiciones++;
-    }
-    for (int i = 0; i < table[pos]->getTamanio(); ++i) {
-
-        if (table[pos]->getDato(i)->getKey() == key) {
-            throw 404;
-        }
-    }
-    table[pos]->insertarUltimo( new HashEntry<K>(key, valor));
-}*/
-
+// Método que devuelve el nodo según la key que recibe
 template<class K>
-void HashMapList<K>::get(K key) { // Método que devuelve la lista según la key que recibe
+void HashMapList<K>::get(K key) { 
     unsigned int pos = hashFuncP(key) % size;
 
     if (table[pos] == NULL) {
