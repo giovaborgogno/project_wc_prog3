@@ -28,7 +28,7 @@ public:
 
     HashEntry<K> *getHashEntry(K key);
 
-    void put(K key, int valor);
+    bool put(K key, int valor);
 
     void putOcurrence(K key, int valor);
 
@@ -73,21 +73,14 @@ HashMapList<K>::~HashMapList() {
 
 
 template<class K>
-void HashMapList<K>::put(K key, int valor) {
+bool HashMapList<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
     if (table[pos] == NULL) {
         table[pos] = new Lista<HashEntry<K> *>;
         posiciones++;
     }
-    table[pos]->insertarHashEntry2(new HashEntry<K>(key, valor));
-    // for (int i = 0; i < table[pos]->getTamanio(); ++i) {
-    //     if (table[pos]->getDato(i)->getKey() == key) {
-    //         table[pos]->getDato(i)->incrementValue();
-    //         throw 404;
-    //     }
-    // }
-    
-    // table[pos]->insertarUltimo(new HashEntry<K>(key, valor));
+    return table[pos]->insertarHashEntry2(new HashEntry<K>(key, valor));
+
 }
 
 template<class K>
@@ -101,17 +94,6 @@ void HashMapList<K>::putOcurrence(K key, int valor) {
     }
   
   maxocurrencia=table[pos]->insertarHashEntry(new HashEntry<K>(key, valor),maxocurrencia);
-
-    // for (int i = 0; i < table[pos]->getTamanio(); ++i) {
-
-    //     if (table[pos]->getDato(i)->getKey() == key) {
-    //         table[pos]->getDato(i)->incrementValue();
-    //         if (table[pos]->getDato(i)->getValue() > maxocurrencia)
-    //             maxocurrencia = table[pos]->getDato(i)->getValue();
-
-    //         throw 404;
-    //     }
-    // }
    
 }
 

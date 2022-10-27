@@ -29,21 +29,21 @@ public:
     countLineas = 0;
     countLetras = 0;
   }
+
   HashMapList<string> *load();
   HashMapList<string> *loadHashList();
   HashMapTree<string> *loadHashTree();
   HashMapList<string> *loadHashList_occurrence();
+
   void basicas();
   void palabras(HashMapTree<string> *hash, int nPalabras = 0);
   void ocurrencias(HashMapList<string> *hash, int nPalabras=0);
   void mostrar(string palabras);
+
   HashMapTree<string> *palabrasExcluir(string palabras);
   HashMapTree<string> *palabrasExcluirf(string ARCHIVO_EXCLUIR);
   HashMapList<string> *ocurrenciasExcluir(string palabras);
   HashMapList<string> *ocurrenciasExcluirf(string ARCHIVO_EXCLUIR);
-
-  //    void ocurrencias(HashMapList<string> *hash, int nPalabras = 0);
-  //    ArbolAlpha<string> *loadDataInTree();
 };
 
 #endif // PROJECT_WC_PROG3_WORDCOUNTER_H

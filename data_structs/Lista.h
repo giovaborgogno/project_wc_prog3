@@ -23,7 +23,7 @@ public:
   void insertarPrimero(T dato);
   void insertarUltimo(T dato);
   int insertarHashEntry(HashEntry<string> *HashEntry, int maxocurrencia);
-  void insertarHashEntry2(HashEntry<string> *HashEntry);
+  bool insertarHashEntry2(HashEntry<string> *HashEntry);
   void remover(int pos);
   T getDato(int pos);
   void reemplazar(int pos, T dato);
@@ -186,12 +186,12 @@ int Lista<T>::insertarHashEntry(HashEntry<string> *HashEntry,
 }
 
 template <class T>
-void Lista<T>::insertarHashEntry2(HashEntry<string> *HashEntry) {
+bool Lista<T>::insertarHashEntry2(HashEntry<string> *HashEntry) {
   Nodo<T> *auxNodo = inicio, *nuevo = new Nodo<T>(HashEntry);
 
   if (esVacia()) {
     insertarPrimero(HashEntry);
-    return;
+    return true;
   }
 
   while (auxNodo->getDato()->getKey() != HashEntry->getKey() &&
@@ -200,12 +200,12 @@ void Lista<T>::insertarHashEntry2(HashEntry<string> *HashEntry) {
   }
   if (auxNodo->getDato()->getKey() == HashEntry->getKey()) {
     HashEntry->incrementValue();
-    throw 405;
+    return false;
   }
     auxNodo->setSiguiente(nuevo);
     nuevo->setSiguiente(nullptr);
     tamanio++;
-    return;
+    return true;
 }
 
 /**

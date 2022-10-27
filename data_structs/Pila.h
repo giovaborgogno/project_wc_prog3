@@ -1,7 +1,7 @@
 #ifndef U03_PILAS_PILA_PILA_H_
 #define U03_PILAS_PILA_PILA_H_
 
-#include "nodo.h"
+#include "Nodo.h"
 
 /**
  * Clase que implementa una Pila generica, ya que puede

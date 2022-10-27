@@ -35,7 +35,7 @@ HashMapTree<K>::HashMapTree(unsigned int size) {
     this->size = size;
     table = new ArbolAlpha<HashEntry<K>*> *[size];
     for (int i = 0; i < size; i++) {
-        table[i] = NULL;
+        table[i] = new ArbolAlpha<HashEntry<K>*>;
     }
     hashFuncP = hashFunc;
 }
@@ -45,7 +45,7 @@ HashMapTree<K>::HashMapTree(unsigned int k, unsigned int (*fp)(K)) {
     size = k;
     table = new ArbolAlpha<HashEntry<K>*> *[size];
     for (int i = 0; i < size; i++) {
-        table[i] = NULL;
+        table[i] = new ArbolAlpha<HashEntry<K>*>;
     }
     hashFuncP = fp;
 }
@@ -63,10 +63,6 @@ template<class K>
 void HashMapTree<K>::put(K key, int valor) {
     unsigned int pos = hashFuncP(key) % size;
 
-    if (table[pos] == NULL) {
-        table[pos] = new ArbolAlpha<HashEntry<K>*>;
-        posiciones++;
-    }
     try{table[pos]->put(new HashEntry<K>(key, valor));}
     catch (int err) {
     }

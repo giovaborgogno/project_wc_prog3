@@ -12,9 +12,11 @@
  * @param string
  * @return string nuevaPalabra
  */
-string WordCounter::soloPalabra(string palabra) {
+string WordCounter::soloPalabra(string palabra)
+{
   string nuevaPalabra;
-  for (int i = 0; i < palabra.length(); ++i) {
+  for (int i = 0; i < palabra.length(); ++i)
+  {
     // if (!ispunct(palabra[i]))
     if (!ispunct(palabra[i]) && !isdigit(palabra[i]))
       nuevaPalabra += tolower(palabra[i]);
@@ -29,46 +31,55 @@ string WordCounter::soloPalabra(string palabra) {
  * Cuenta palabras, palabras diferentes, lineas y letras
  * @return HashMapList<string> *hash
  */
-HashMapList<string> *WordCounter::load() {
+HashMapList<string> *WordCounter::load()
+{
   ifstream fich(ARCHIVO);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
   int tamanio = 584999;
+  //  int tamanio = 10061;
   //    int tamanio = 200003;
   HashMapList<string> *hash = new HashMapList<string>(tamanio);
   string palabra, linea;
 
   // Recorre cada linea del archivo contando las lineas, letras, palabras,
   // palabras diferentes Carga las palabras en un HashMapList
-  while (getline(fich, linea)) {
+  while (getline(fich, linea))
+  {
     countLineas++;
     stringstream stream(linea);
-    while (stream >> palabra) {
-      try {
+    while (stream >> palabra)
+    {
+      try
+      {
         palabra = soloPalabra(palabra);
         countLetras += palabra.length();
         countPalabras++;
-        hash->put(palabra, 1);
-        countPalabrasDif++;
-      } catch (int err) {
+        if (hash->put(palabra, 1))
+          countPalabrasDif++;
+      }
+      catch (int err)
+      {
       };
     }
   }
-  cout << "Hubo " << countPalabrasDif - hash->posiciones << " colisiones\n";
 
   return hash;
 }
 
 /**
- * Lee un archivo de texto y carga las palabras en un HashMapList
+ * Lee un archivo de texto y carga las palabras en un HashMapList con sus ocurrencias
  * @return HashMapList<string> *hash
  */
-HashMapList<string> *WordCounter::loadHashList() {
+HashMapList<string> *WordCounter::loadHashList()
+{
 
   ifstream fich(ARCHIVO);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
@@ -77,10 +88,14 @@ HashMapList<string> *WordCounter::loadHashList() {
   string palabra;
 
   // Recorre el archivo cargando cada palabra en un HashMapList
-  while (fich >> palabra) {
-    try {
-      hash->put(soloPalabra(palabra), 1);
-    } catch (int err) {
+  while (fich >> palabra)
+  {
+    try
+    {
+      hash->putOcurrence(soloPalabra(palabra), 1);
+    }
+    catch (int err)
+    {
     };
   }
 
@@ -92,28 +107,29 @@ HashMapList<string> *WordCounter::loadHashList() {
  * Carga las palabras en un hash contando las ocurrencias de las palabras
  * @return HashMapList<string> *hash
  */
-HashMapList<string> *WordCounter::loadHashList_occurrence() {
-  //   unsigned t3, t4;
+HashMapList<string> *WordCounter::loadHashList_occurrence()
+{
   ifstream fich(ARCHIVO);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
   int tamanio = 10061;
+  // int tamanio = 584999;
   HashMapList<string> *hash = new HashMapList<string>(tamanio);
   string palabra;
-  //   t3 = clock();
-  while (fich >> palabra) {
-    try {
-      hash->putOcurrence(soloPalabra(palabra),
-                         1); // el metodo putOcurrence carga el hash mientras
-                             // cuenta las ocurrencias de las palabras
-    } catch (int err) {
+  while (fich >> palabra)
+  {
+    try
+    {
+      hash->putOcurrence(soloPalabra(palabra), 1); // el metodo putOcurrence carga el hash mientras
+                                                   // cuenta las ocurrencias de las palabras
+    }
+    catch (int err)
+    {
     };
   }
-  //   t4 = clock();
-  //   double time = (double(t4 - t3) / CLOCKS_PER_SEC);
-  //   cout << "Load in hash: " << time << "\n";
   return hash;
 }
 
@@ -122,9 +138,11 @@ HashMapList<string> *WordCounter::loadHashList_occurrence() {
  * Carga el hash ordenado alfabeticamente
  * @return HashMapTree<string> *hash
  */
-HashMapTree<string> *WordCounter::loadHashTree() {
+HashMapTree<string> *WordCounter::loadHashTree()
+{
   ifstream fich(ARCHIVO);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
@@ -132,11 +150,15 @@ HashMapTree<string> *WordCounter::loadHashTree() {
       27; // una posicion del hash para cada letra, y una para los signos
   HashMapTree<string> *hash = new HashMapTree<string>(tamanio);
   string palabra, linea;
-  while (fich >> palabra) {
-    try {
+  while (fich >> palabra)
+  {
+    try
+    {
       palabra = soloPalabra(palabra);
       hash->put(palabra, 1);
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     };
   }
   return hash;
@@ -146,7 +168,8 @@ HashMapTree<string> *WordCounter::loadHashTree() {
  * Carga un hash con las palabras del archivo
  * Muestra la cantidad de letras, lineas, palabras y palabras diferentes
  */
-void WordCounter::basicas() {
+void WordCounter::basicas()
+{
   load();
   cout << countLineas << " lineas\n";
   cout << countLetras << " letras\n";
@@ -160,18 +183,15 @@ void WordCounter::basicas() {
  * @param int nPalabras :cantidad de palabras que desea mostrar (por defecto
  * nPalabras = 0)
  */
-void WordCounter::palabras(HashMapTree<string> *hash, int nPalabras) {
+void WordCounter::palabras(HashMapTree<string> *hash, int nPalabras)
+{
   int countPalabras = 0; // cuenta las palabras que se imprimen
-                         // Se recorre el hash de arboles
-  for (int i = 0; i < hash->size; ++i) {
-    if (hash->table[i] != NULL) {
-      try {
-        hash->table[i]->inorder(nPalabras,
-                                countPalabras); // se imprime inOrder cada arbol
-      } catch (int err) {
-      }
-    }
-  }
+
+  // Se recorre el hash de arboles
+  for (int i = 0; i < hash->size; ++i)
+
+        hash->table[i]->inorder(nPalabras, countPalabras); // se imprime inOrder cada arbol
+
 }
 
 /**
@@ -179,35 +199,43 @@ void WordCounter::palabras(HashMapTree<string> *hash, int nPalabras) {
  * las muestra ordenadas por ocurrencias
  * @param string palabras
  */
-void WordCounter::mostrar(string palabras) {
+void WordCounter::mostrar(string palabras)
+{
   HashMapList<string> *hash = loadHashList(); // carga un HashMapList con las palabras del archivo
 
   // Las palabras pasadas como parametros son almacenadas en una cola
   stringstream stream(palabras);
   Cola<string> cola;
   string palabra;
-  while (stream >> palabra) {
-    try {
+  while (stream >> palabra)
+  {
+    try
+    {
       cola.encolar(soloPalabra(palabra));
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     }
   }
 
   // Busca las palabras en el hash y las almacena en una colaPrioridad, la prioridad es la ocurrencia de la palabra
   ColaPrioridad<HashEntry<string> *> colaPrioridad;
-  while (!cola.esVacia()) {
-    try {
+  while (!cola.esVacia())
+  {
+    try
+    {
       palabra = cola.desencolar();
-      colaPrioridad.encolarPrioridad(hash->getHashEntry(palabra),
-                                     hash->getHashEntry(palabra)->getValue());
-
-    } catch (int err) {
+      colaPrioridad.encolarPrioridad(hash->getHashEntry(palabra), hash->getHashEntry(palabra)->getValue());
+    }
+    catch (int err)
+    {
       cerr << "error..." << err << endl;
     }
   }
 
   // Imprime las palabras(key) y ocurrencias(value)
-  while (!colaPrioridad.esVacia()) {
+  while (!colaPrioridad.esVacia())
+  {
     HashEntry<string> *auxHashEntry = colaPrioridad.desencolar();
     cout << auxHashEntry->getKey() << " " << auxHashEntry->getValue() << "\n";
   }
@@ -216,24 +244,30 @@ void WordCounter::mostrar(string palabras) {
 /**
  * Devuelve un *HashMapTree sin las palabras pasadas como parametros
  * @param string palabras
- * @return HashMapTree<string>* 
+ * @return HashMapTree<string>*
  */
-HashMapTree<string> *WordCounter::palabrasExcluir(string palabras) {
+HashMapTree<string> *WordCounter::palabrasExcluir(string palabras)
+{
   HashMapTree<string> *hash = loadHashTree(); // carga un HashMapTree con las palabras del archivo
 
   // Las palabras pasadas como parametros son almacenadas en una cola
   stringstream stream(palabras);
   Cola<string> cola;
   string palabra;
-  while (stream >> palabra) {
+  while (stream >> palabra)
+  {
     cola.encolar(soloPalabra(palabra));
   }
 
   // elimina del hash las palabras
-  while (!cola.esVacia()) {
-    try {
+  while (!cola.esVacia())
+  {
+    try
+    {
       hash->remove(cola.desencolar());
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     }
   }
   return hash;
@@ -244,29 +278,39 @@ HashMapTree<string> *WordCounter::palabrasExcluir(string palabras) {
  * @param string ARCHIVO_EXCLUIR archivo que contiene las palabras a excluir
  * @return HashMapTree<string>*
  */
-HashMapTree<string> *WordCounter::palabrasExcluirf(string ARCHIVO_EXCLUIR) {
+HashMapTree<string> *WordCounter::palabrasExcluirf(string ARCHIVO_EXCLUIR)
+{
   HashMapTree<string> *hash = loadHashTree(); // carga un HashMapTree con las palabras del archivo
 
-  // Las palabras pasadas como parametros son almacenadas en una cola
+  // Las palabras del archivo pasado como parametro son almacenadas en una cola
   Cola<string> cola;
   ifstream fich(ARCHIVO_EXCLUIR);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
   string palabra;
-  while (fich >> palabra) {
-    try {
+  while (fich >> palabra)
+  {
+    try
+    {
       cola.encolar(palabra);
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     };
   }
 
   // elimina del hash las palabras
-  while (!cola.esVacia()) {
-    try {
+  while (!cola.esVacia())
+  {
+    try
+    {
       hash->remove(cola.desencolar());
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     }
   }
   return hash;
@@ -278,18 +322,18 @@ HashMapTree<string> *WordCounter::palabrasExcluirf(string ARCHIVO_EXCLUIR) {
  * @param int nPalabras :cantidad de palabras que desea mostrar (por defecto
  * nPalabras = 0)
  */
-void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia, int nPalabras) {
-  //   unsigned t5, t6;
-  //   t5 = clock();
-  int count = hashocurrencia->maxocurrencia;
-  Pila<HashEntry<string> *> arrayordenado[count];
-  for (int i = 0; i < hashocurrencia->size; i++) {
+void WordCounter::ocurrencias(HashMapList<string> *hash, int nPalabras) {
+// Se cargan las palabras en un array, en la posicion que le corresponde segun su ocurrencia
+  // Ej: todas las palabras con 8 ocurrencias se cargan en arrayPilas[7]
+  int tamanioArray = hash->maxocurrencia; // El tamanio del array es la maxima ocurrencia de las palabras cargadas
+  Pila<HashEntry<string> *> arrayPilas[tamanioArray];
+  for (int i = 0; i < hash->size; i++) {
     try {
-      if (hashocurrencia->table[i] != NULL) {
+      if (hash->table[i] != NULL) {
         Nodo<HashEntry<string> *> *HashEntryaux =
-            hashocurrencia->table[i]->getinicio();
+            hash->table[i]->getinicio();
         while (HashEntryaux != nullptr) {
-          arrayordenado[HashEntryaux->getDato()->getValue()].push(
+          arrayPilas[HashEntryaux->getDato()->getValue()-1].push(
               HashEntryaux->getDato());
           HashEntryaux = HashEntryaux->getSiguiente();
         }
@@ -298,295 +342,112 @@ void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia, int nPalabras
     } catch (int err) {
     }
   }
-  //   t6 = clock();
+    // Para imprimir todas las palabras se recorre todo el array desde la ultima posicion hasta la primera
+    if (nPalabras == 0) {
+      while (tamanioArray-1 >= 0) {
+        try {
+          // en cada posicion del array si la pila no es vacia se hace pop hasta vaciar la pila
+          while (!arrayPilas[tamanioArray-1].esVacia()) {
+            HashEntry<string> *HashEntryaux = arrayPilas[tamanioArray-1].pop();
+            cout << HashEntryaux->getKey() << ' ' << HashEntryaux->getValue()
+                 << '\n';
+          }
+        } catch (int err) {
+          cout << "Error" << endl;
+        }
+        tamanioArray--;
+      }
+    }
 
-  if (nPalabras == 0) {
-    while (count >= 0) {
-      try {
-        while (!arrayordenado[count].esVacia()) {
-          HashEntry<string> *HashEntryaux = arrayordenado[count].pop();
-          cout << HashEntryaux->getKey() << ' ' << HashEntryaux->getValue()
-               << '\n';
+    // Para imprimir nPalabras tambien se recorre el array desde la ultima posicion hasta la primera haciendo pop para vaciar cada pila, pero si llega a nPalabras finaliza el recorrido 
+    else {
+      for (int i = 0; i < nPalabras; i) {
+        try {
+          while (!arrayPilas[tamanioArray-1].esVacia() && i < nPalabras) {
+            HashEntry<string> *HashEntryaux = arrayPilas[tamanioArray-1].pop();
+            cout << HashEntryaux->getKey() << ' ' << HashEntryaux->getValue()
+                 << '\n';
+            i++;
+          }
+        } catch (int err) {
+          cout << "Error" << endl;
         }
-      } catch (int err) {
-        cout << "Error" << endl;
+        tamanioArray--;
       }
-      count--;
     }
-  } else {
-    for (int i = 0; i < nPalabras; i) {
-      try {
-        while (!arrayordenado[count].esVacia() && i < nPalabras) {
-          HashEntry<string> *HashEntryaux = arrayordenado[count].pop();
-          cout << HashEntryaux->getKey() << ' ' << HashEntryaux->getValue()
-               << '\n';
-          i++;
-        }
-      } catch (int err) {
-        cout << "Error" << endl;
-      }
-      count--;
-    }
-  }
-  //   double time = (double(t6 - t5) / CLOCKS_PER_SEC);
-  //   cout << "OCURRENCIAAAAA: " << time << "\n";
+
 }
 
-HashMapList<string> *WordCounter::ocurrenciasExcluir(string palabras) {
-  HashMapList<string> *hash = loadHashList_occurrence();
+/**
+ * Devuelve un *HashMapList sin las palabras pasadas como parametros
+ * @param string palabras
+ * @return HashMapList<string>*
+ */
+HashMapList<string> *WordCounter::ocurrenciasExcluir(string palabras)
+{
+  HashMapList<string> *hash = loadHashList_occurrence(); // carga un HashMapList con las palabras del archivo
+
+  // Las palabras pasadas como parametros son almacenadas en una cola
   stringstream stream(palabras);
   Cola<string> cola;
   string palabra;
-  while (stream >> palabra) {
+  while (stream >> palabra)
+  {
     cola.encolar(soloPalabra(palabra));
   }
-  while (!cola.esVacia()) {
-    try {
+  // elimina del hash las palabras
+  while (!cola.esVacia())
+  {
+    try
+    {
       hash->remove(cola.desencolar());
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     }
   }
   return hash;
 }
 
-HashMapList<string> *WordCounter::ocurrenciasExcluirf(string ARCHIVO_EXCLUIR) {
-  HashMapList<string> *hash = loadHashList_occurrence();
+/**
+ * Devuelve un *HashMapList sin las palabras pasadas en un archivo
+ * @param string ARCHIVO_EXCLUIR archivo que contiene las palabras a excluir
+ * @return HashMapList<string>*
+ */
+HashMapList<string> *WordCounter::ocurrenciasExcluirf(string ARCHIVO_EXCLUIR)
+{
+  HashMapList<string> *hash = loadHashList_occurrence(); // carga un HashMapList con las palabras del archivo
+
+  // Las palabras del archivo pasado como parametro son almacenadas en una cola
   Cola<string> cola;
   ifstream fich(ARCHIVO_EXCLUIR);
-  if (!fich.is_open()) {
+  if (!fich.is_open())
+  {
     cout << "Error al abrir el archivo";
     exit(EXIT_FAILURE);
   }
   string palabra;
-  while (fich >> palabra) {
-    try {
+  while (fich >> palabra)
+  {
+    try
+    {
       cola.encolar(palabra);
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     };
   }
-  while (!cola.esVacia()) {
-    try {
+
+  // elimina del hash las palabras
+  while (!cola.esVacia())
+  {
+    try
+    {
       hash->remove(cola.desencolar());
-    } catch (int err) {
+    }
+    catch (int err)
+    {
     }
   }
   return hash;
 }
-
-//   void WordCounter::ocurrencias(HashMapList<string> *hashocurrencia,int
-//   nPalabras) {
-//     int count = hashocurrencia->maxocurrencia;
-//     Pila<HashEntry<string> *> arrayordenado[count];
-//     for (int i = 0; i < hashocurrencia->size; i++) {
-//       try {
-//         if (hashocurrencia->table[i] != NULL) {
-//           for (int j = 0; j < hashocurrencia->table[i]->getTamanio(); j++)
-//           {
-//             arrayordenado[hashocurrencia->table[i]->getDato(j)->getValue()].push(
-//                 hashocurrencia->table[i]->getDato(j));
-//           }
-//         } else
-//           throw 409;
-//       } catch (int err) {
-//       }
-//     }
-
-//     if (nPalabras == 0) {
-//       while (count >= 0) {
-//         try {
-//           while (!arrayordenado[count].esVacia()) {
-//             HashEntry<string> *aux = arrayordenado[count].pop();
-//             cout << aux->getKey() << ' ' << aux->getValue() << '\n';
-//           }
-//         } catch (int err) {
-//           cout << "Error" << endl;
-//         }
-//         count--;
-//       }
-//       return;
-//     }
-
-//     for (int i = 0; i < nPalabras; i) {
-//       try {
-//         while (!arrayordenado[count].esVacia() && i < nPalabras) {
-//           HashEntry<string> *aux = arrayordenado[count].pop();
-//           cout << aux->getKey() << ' ' << aux->getValue() << '\n';
-//           i++;
-//         }
-//       } catch (int err) {
-//         cout << "Error" << endl;
-//       }
-//       count--;
-//     }
-//   AAAA
-//       if(nPalabras == 0){
-//         while(count>=0){
-//           try {
-//             for (int j = 0; j < hashordenado[count].getTamanio(); j++) {
-//               cout << hashordenado[count].getDato(j)->getKey() << ' '
-//                    << hashordenado[count].getDato(j)->getValue() << endl;
-//             }
-//           } catch (int err) {
-//             cout << "Error" << endl;
-//           }
-//           count--;
-//         }
-//         return;
-//       }
-//     for (int i = 0; i < nPalabras; i) {
-//         try {
-//             for (int j = 0; j < hashordenado[count].getTamanio(); j++) {
-//                 if (i < nPalabras) {
-//                     cout << hashordenado[count].getDato(j)->getKey() << ' '
-//                          << hashordenado[count].getDato(j)->getValue() <<
-//                          endl;
-//                     i++;
-//                 }
-//             }
-//         } catch (int err) {
-//             cout << "Error" << endl;
-//         }
-//         count--;
-//     }
-
-/*ArbolAlpha<string> *WordCounter::loadDataInTree() {
-    ifstream fich(ARCHIVO);
-    if (!fich.is_open()) {
-        cout << "Error al abrir el archivo";
-        exit(EXIT_FAILURE);
-    }
-    string palabra;
-    ArbolAlpha<string> *arbol = new ArbolAlpha<string>();
-
-    while (fich >> palabra) {
-        try {
-            arbol->put(soloPalabra(palabra));
-        }
-        catch (int err) {
-        }
-    }
-    return arbol;
-}*/
-/*ArbolAlpha<string> *WordCounter::excluir(string palabras) {
-    ArbolAlpha<string> *arbol = loadDataInTree();
-    stringstream stream(palabras);
-    Cola<string> cola;
-    string palabra;
-    while (stream >> palabra) {
-        cola.encolar(palabra);
-    }
-    while (!cola.esVacia()) {
-        try {
-            arbol->remove(cola.desencolar());
-
-        } catch (int err) {
-
-        }
-    }
-    return arbol;
-}*/
-/*
-
-ArbolAlpha<string> *WordCounter::excluirf(std::string ARCHIVO_EXCLUIR) {
-    ArbolAlpha<string> *arbol = loadDataInTree();
-    Cola<string> cola;
-    ifstream fich(ARCHIVO_EXCLUIR);
-    if (!fich.is_open()) {
-        cout << "Error al abrir el archivo";
-        exit(EXIT_FAILURE);
-    }
-    string palabra;
-    while (fich >> palabra) {
-        try {
-            cola.encolar(palabra);
-        }
-        catch (int err) {
-        };
-    }
-
-    while (!cola.esVacia()) {
-        try {
-            arbol->remove(cola.desencolar());
-
-        } catch (int err) {
-
-        }
-    }
-    return arbol;
-}
-*/
-/*
- * void WordCounter::palabras(ArbolAlpha<string> *arbol, int nPalabras) {
-    //ArbolAlpha<string> *arbol = loadDataInTree();
-    arbol->inorder(nPalabras);
-}
-*/
-/*
-void WordCounter::palabrasNuevo(int nPalabras) {
-    HashMapList<string> *hash = loadInHash();
-    ColaPrioridad<HashEntry<string> *> colaPrioridad;
-    int count = 0;
-    for (int i = 0; i < hash->size; ++i) {
-        try {
-            if (!hash->table[i])throw 404;
-            Nodo<HashEntry<string> *> *temp = hash->table[i]->getinicio();
-            if (hash->table[i]->esVacia())throw 404;
-            else {
-                while (temp != nullptr) {
-                    {
-                        colaPrioridad.encolarPrioridadString(temp->getDato(),
-temp->getDato()->getKey()); count++;
-//
-colaPrioridad.encolarPrioridadString(temp->getDato(),temp->getDato()->getKey());
-                        if (temp->getSiguiente() == nullptr) break;
-                        temp = temp->getSiguiente();
-
-                    }
-                }
-            }
-        }
-        catch (int err) {
-        }
-    }
-    if (nPalabras == 0) {
-        for (int i = 0; i < count; ++i) {
-            HashEntry<string> *hashEntry = colaPrioridad.desencolar();
-            cout << hashEntry->getKey() << " " << hashEntry->getValue() << "\n";
-        }
-        return;
-    }
-
-    for (int i = 0; i < nPalabras; ++i) {
-        HashEntry<string> *hashEntry = colaPrioridad.desencolar();
-        cout << hashEntry->getKey() << " " << hashEntry->getValue() << "\n";
-    }
-
-}
-*/
-/*
-void WordCounter::ocurrencias(HashMapList<string> *hash, int nPalabras) {
-    ArbolOccurrence-viejo<string> *arbol = new ArbolOccurrence-viejo<string>();
-    for (int i = 0; i < hash->size; ++i) {
-        try {
-
-            if (!hash->table[i])throw 404;
-            Nodo<HashEntry<string> *> *temp = hash->table[i]->getinicio();
-            if (hash->table[i]->esVacia())throw 404;
-            else {
-                while (temp != nullptr) {
-                    {
-                        arbol->put(temp->getDato()->getKey(),
-temp->getDato()->getValue()); if (temp->getSiguiente() == nullptr) break; temp =
-temp->getSiguiente();
-
-                    }
-                }
-            }
-        }
-        catch (int err) {
-        }
-    }
-
-    arbol->inorder(nPalabras);
-}
-*/
