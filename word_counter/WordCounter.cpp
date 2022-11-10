@@ -229,7 +229,7 @@ void WordCounter::mostrar(string palabras)
     }
     catch (int err)
     {
-      cerr << "error..." << err << endl;
+      cout << "\""<< palabra << "\" no existe en el archivo.\n";
     }
   }
 
@@ -361,7 +361,8 @@ void WordCounter::ocurrencias(HashMapList<string> *hash, int nPalabras) {
 
     // Para imprimir nPalabras tambien se recorre el array desde la ultima posicion hasta la primera haciendo pop para vaciar cada pila, pero si llega a nPalabras finaliza el recorrido 
     else {
-      for (int i = 0; i < nPalabras; i) {
+      int i=0;
+      while ( i < nPalabras && tamanioArray>=0) {
         try {
           while (!arrayPilas[tamanioArray-1].esVacia() && i < nPalabras) {
             HashEntry<string> *HashEntryaux = arrayPilas[tamanioArray-1].pop();
