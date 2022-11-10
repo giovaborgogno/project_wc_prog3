@@ -57,6 +57,7 @@ ColaPrioridad<T>::~ColaPrioridad()
     delete fondo;
 }
 
+#define SIN_PRIORIDAD 10000000000000
 /**
  * Inserta un dato en la Cola
  * @tparam T

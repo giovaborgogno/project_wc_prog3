@@ -14,10 +14,11 @@ Ej: wce -ocurrencia 5 file.txt
 
 -mostrar [palabra] [palabra] : Mostrará la o las palabras pasadas como argumento ordenadas por
 ocurrencia.
+Ej: wce -mostrar "palabra1, palabra2" file.txt
 
 -excluir [palabra] [palabra] : Modifica los comandos ocurrencias y palabras haciendo que no muestren las
 palabras pasadas como argumentos.  
-Ej: wce -ocurrencia -excluir "hola chau" file.txt
+Ej: wce -ocurrencia -excluir "palabra1, palabra2" file.txt
 
 -excluirf [archivo.txt] : Modifica los comandos ocurrencias y palabras haciendo que no muestren las
 palabras que contiene el archivo.txt.  
